@@ -37,8 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_floating_bottom_bar: ^1.2.0
   simple_floating_bottom_nav_bar: ^0.0.3
-  media_kit: ^1.1.10+1
-  media_kit_video: ^1.1.10+1
+  youtube_player_flutter: ^9.0.1
+
 
 dev_dependencies:
   flutter_test:

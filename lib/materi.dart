@@ -1,7 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class ThirdPage extends StatelessWidget {
+class ThirdPage extends StatefulWidget {
   const ThirdPage({super.key});
+
+  @override
+  _ThirdPageState createState() => _ThirdPageState();
+}
+
+class _ThirdPageState extends State<ThirdPage> {
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = YoutubePlayerController(
+      initialVideoId: 'ENkG7rZ60eg', // ID video YouTube dari link Anda
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,23 +91,12 @@ class ThirdPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: double.infinity,
-                height: 200,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                        'assets/images/video-play.jpg'), 
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.play_circle_outline,
-                    color: Colors.white,
-                    size: 64,
-                  ),
-                ),
+              YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
+                onReady: () {
+                  print('Player is ready.');
+                },
               ),
               const SizedBox(height: 16),
               Container(
