@@ -17,7 +17,7 @@ class _ThirdPageState extends State<ThirdPage> {
     _controller = YoutubePlayerController(
       initialVideoId: 'ENkG7rZ60eg', // ID video YouTube dari link Anda
       flags: const YoutubePlayerFlags(
-        autoPlay: true,
+        autoPlay: false,
         mute: false,
       ),
     );
@@ -95,7 +95,6 @@ class _ThirdPageState extends State<ThirdPage> {
                 controller: _controller,
                 showVideoProgressIndicator: true,
                 onReady: () {
-                  print('Player is ready.');
                 },
               ),
               const SizedBox(height: 16),
