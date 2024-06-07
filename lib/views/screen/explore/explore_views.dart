@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:assesment2/views/screen/explore/list_materi.dart';
+
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -8,8 +10,6 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  // int _selectedIndex = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +54,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     title: 'Math',
                     viewers: '71.3K',
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => materi1Screen()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                      );
                     },
                   ),
                   CourseCard(
@@ -65,10 +65,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     title: 'Biology',
                     viewers: '57.3K',
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => materi1Screen()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                      );
                     },
                   ),
                   CourseCard(
@@ -76,10 +76,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     title: 'Physic',
                     viewers: '102.5K',
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => materi1Screen()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                      );
                     },
                   ),
                   CourseCard(
@@ -87,10 +87,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     title: 'Economics',
                     viewers: '85.7K',
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => materi1Screen()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                      );
                     },
                   ),
                 ],
@@ -111,10 +111,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     title: 'Math',
                     viewers: '120.4K',
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => materi1Screen()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                      );
                     },
                   ),
                   CourseCard(
@@ -122,10 +122,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     title: 'Economics',
                     viewers: '95.3K',
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => materi1Screen()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                      );
                     },
                   ),
                 ],

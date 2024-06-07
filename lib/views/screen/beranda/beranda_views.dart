@@ -1,4 +1,4 @@
-import 'package:assesment2/views/screen/materi/materi_views.dart';
+import 'package:assesment2/views/screen/explore/explore_views.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -167,7 +167,7 @@ class HomeScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ThirdPage(),
+                                builder: (context) => const ExploreScreen(),
                               ),
                             );
                           },
@@ -179,7 +179,7 @@ class HomeScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ThirdPage(),
+                                builder: (context) => const ExploreScreen(),
                               ),
                             );
                           },
@@ -191,7 +191,7 @@ class HomeScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ThirdPage(),
+                                builder: (context) => const ExploreScreen(),
                               ),
                             );
                           },
@@ -203,7 +203,7 @@ class HomeScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ThirdPage()),
+                                  builder: (context) => const ExploreScreen()),
                             );
                           },
                           child: Image.asset("assets/images/course4.jpg"),
