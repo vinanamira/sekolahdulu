@@ -1,5 +1,5 @@
 import 'package:assesment2/views/screen/beranda/beranda_views.dart';
-import 'package:assesment2/views/screen/bookmark/bookmark_views.dart';
+import 'package:assesment2/views/screen/to_do_list/toDoList.dart';
 import 'package:assesment2/views/screen/explore/explore_views.dart';
 import 'package:assesment2/views/screen/history/history_views.dart';
 import 'package:assesment2/views/screen/setting/setting_views.dart';
@@ -64,6 +64,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
         barColor: const Color.fromRGBO(59, 38, 122, 1),
         body: (context, controller) => TabBarView(
           controller: tabController,
+          physics: const NeverScrollableScrollPhysics(),
           children: _pageViews,
         ),
         borderRadius: BorderRadius.circular(50),
@@ -89,7 +90,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
             SizedBox(
               height: 60,
               child: Icon(
-                Icons.bookmark_added,
+                Icons.edit_note,
                 color: _selectedIndex == 1 ? selectedColor : unselectedColor,
               ),
             ),

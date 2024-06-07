@@ -250,13 +250,13 @@ class _ThirdPageState extends State<ThirdPage> {
                           color: Color.fromRGBO(184, 186, 196, 1),
                         ),
                       ),
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                      backgroundColor: const Color.fromRGBO(78, 50, 162, 1),
                     ),
                     child: const Text(
-                      'Next Video',
+                      'Continue',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Color.fromRGBO(78, 50, 162, 1),
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   ),
