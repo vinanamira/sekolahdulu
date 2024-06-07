@@ -1,5 +1,5 @@
 import 'package:assesment2/views/screen/beranda/beranda_views.dart';
-import 'package:assesment2/views/screen/to_do_list/toDoList.dart';
+import 'package:assesment2/views/screen/to_do_list/to_do_list.dart';
 import 'package:assesment2/views/screen/explore/explore_views.dart';
 import 'package:assesment2/views/screen/history/history_views.dart';
 import 'package:assesment2/views/screen/setting/setting_views.dart';
@@ -39,7 +39,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
 
   final List<Widget> _pageViews = [
     const HomeScreen(),
-    const BookmarkScreen(),
+    const ToDoListScreen(),
     const ExploreScreen(),
     const HistoryScreen(),
     const SettingScreen(),
