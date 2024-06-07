@@ -1,6 +1,6 @@
 # Sekolahdulu
 
-Sekolahdulu merupakan platform digital yang digunakan siswa untuk melakukan pembelajaran secara daring. Tujuan dari aplikasi ini adalah untuk memudahkan siswa dalam melakukan pembelajaran secara daring dengan dukungan penjadwalan, akses materi video, dan latihan soal. Aplikasi Sekolahdulu menyediakan fitur penjadwalan, akses materi video, latihan soal, pengaturan daily task siswa, serta pengoreksian latihan soal. Metode pengembangan aplikasi ini melibatkan analisis kebutuhan pengguna, desain antarmuka yang intuitif, pengembangan menggunakan platform mobile, dan pengujian secara menyeluruh.
+Sekolahdulu merupakan platform digital yang digunakan siswa untuk melakukan pembelajaran secara daring. Aplikasi Sekolahdulu menyediakan fitur penjadwalan, akses materi video, latihan soal, pengaturan daily task siswa, serta pengoreksian latihan soal. Metode pengembangan aplikasi ini melibatkan analisis kebutuhan pengguna, desain antarmuka yang intuitif, pengembangan menggunakan platform mobile, dan pengujian secara menyeluruh.
 
 ## Getting Started
 
