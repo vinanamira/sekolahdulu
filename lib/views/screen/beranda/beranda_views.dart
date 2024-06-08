@@ -1,4 +1,3 @@
-import 'package:assesment2/views/screen/explore/explore_views.dart';
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -179,10 +178,12 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ExploreScreen(),
+                                builder: (context) => const HomeNavbarWidget(
+                                  isFromHome: true,
+                                ),
                               ),
                             );
                           },
@@ -191,10 +192,12 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ExploreScreen(),
+                                builder: (context) => const HomeNavbarWidget(
+                                  isFromHome: true,
+                                ),
                               ),
                             );
                           },
@@ -203,10 +206,13 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ExploreScreen()),
+                                builder: (context) => const HomeNavbarWidget(
+                                  isFromHome: true,
+                                ),
+                              ),
                             );
                           },
                           child: Image.asset("assets/images/course4.jpg"),
