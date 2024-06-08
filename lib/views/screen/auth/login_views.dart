@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -191,9 +189,7 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                                   // tapi diupdate pake data baru
                                   if (snapshot.exists) {
                                     // ====== UPDATE ======
-                                    await ref
-                                        .child(user.uid)
-                                        .update({
+                                    await ref.child(user.uid).update({
                                       'username': username,
                                       'fullname': username,
                                       'email': user.email,
@@ -211,7 +207,8 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
 
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => const HomeNavbarWidget(),
+                                  builder: (context) =>
+                                      const HomeNavbarWidget(),
                                 ),
                               );
                             },
