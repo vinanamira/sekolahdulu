@@ -187,7 +187,7 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => const HomeNavbarWidget(),
+                                builder: (context) => HomeNavbarWidget(),
                               ),
                             );
                           },

@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 
 class HomeNavbarWidget extends StatefulWidget {
-  const HomeNavbarWidget({super.key});
+  HomeNavbarWidget({
+    super.key,
+    this.selectedIndex = 0,
+  });
+
+  int? selectedIndex;
 
   @override
   State<HomeNavbarWidget> createState() => _HomeNavbarWidgetState();
@@ -16,8 +21,6 @@ class HomeNavbarWidget extends StatefulWidget {
 class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
-
-  int _selectedIndex = 0;
 
   Color selectedColor = const Color.fromRGBO(59, 38, 122, 1);
   Color unselectedColor = Colors.white;
@@ -28,7 +31,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
     tabController.animation!.addListener(
       () {
         final value = tabController.animation!.value.round();
-        if (value != _selectedIndex && mounted) {
+        if (value != widget.selectedIndex && mounted) {
           _onPageTapped(value);
         }
       },
@@ -47,7 +50,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
 
   void _onPageTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      widget.selectedIndex = index;
     });
   }
 
@@ -84,35 +87,35 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
               height: 60,
               child: Icon(
                 Icons.home,
-                color: _selectedIndex == 0 ? selectedColor : unselectedColor,
+                color: widget.selectedIndex == 0 ? selectedColor : unselectedColor,
               ),
             ),
             SizedBox(
               height: 60,
               child: Icon(
                 Icons.edit_note,
-                color: _selectedIndex == 1 ? selectedColor : unselectedColor,
+                color: widget.selectedIndex == 1 ? selectedColor : unselectedColor,
               ),
             ),
             SizedBox(
               height: 60,
               child: Icon(
                 Icons.video_collection,
-                color: _selectedIndex == 2 ? selectedColor : unselectedColor,
+                color: widget.selectedIndex == 2 ? selectedColor : unselectedColor,
               ),
             ),
             SizedBox(
               height: 60,
               child: Icon(
                 Icons.access_time_filled,
-                color: _selectedIndex == 3 ? selectedColor : unselectedColor,
+                color: widget.selectedIndex == 3 ? selectedColor : unselectedColor,
               ),
             ),
             SizedBox(
               height: 60,
               child: Icon(
                 Icons.settings,
-                color: _selectedIndex == 4 ? selectedColor : unselectedColor,
+                color: widget.selectedIndex == 4 ? selectedColor : unselectedColor,
               ),
             ),
           ],

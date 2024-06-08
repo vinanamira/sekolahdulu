@@ -1,4 +1,5 @@
 import 'package:assesment2/views/screen/explore/explore_views.dart';
+import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -167,7 +168,9 @@ class HomeScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ExploreScreen(),
+                                builder: (context) => HomeNavbarWidget(
+                                  selectedIndex: 2,
+                                ),
                               ),
                             );
                           },
