@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:assesment2/views/screen/materi/course_view.dart'; // Import the CourseScreen from the materi folder
 
 class ThirdPage extends StatefulWidget {
   const ThirdPage({super.key});
@@ -238,7 +239,14 @@ class _ThirdPageState extends State<ThirdPage> {
                 const SizedBox(height: 24),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>  CourseScreen(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 128,
