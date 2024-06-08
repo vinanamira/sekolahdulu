@@ -52,7 +52,6 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
     const HomeScreen(),
     const ToDoListScreen(),
     const ExploreScreen(),
-    const HistoryScreen(),
     ProfileScreen(),
   ];
 
@@ -116,7 +115,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
               height: 60,
               child: Icon(
                 Icons.settings,
-                color: _selectedIndex == 4 ? selectedColor : unselectedColor,
+                color: _selectedIndex == 3 ? selectedColor : unselectedColor,
               ),
             ),
           ],
