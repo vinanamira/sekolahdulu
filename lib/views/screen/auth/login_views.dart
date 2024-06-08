@@ -203,14 +203,14 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                                     });
                                   }
                                 }
-                              }
 
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const HomeNavbarWidget(),
-                                ),
-                              );
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HomeNavbarWidget(),
+                                  ),
+                                );
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
