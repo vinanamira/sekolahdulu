@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/materi/materi_views.dart';
 import 'package:assesment2/views/screen/explore/explore_views.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class LiveCoursesScreen extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: ListView(
           children: [
             const Text(
@@ -36,10 +37,8 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               ),
             ),
             CourseCard(
-              teacher: "Hanna Rose",
               title: "Arithmetic Operations",
-              time: "09-09 9:00 am",
-              image: "assets/images/directions.jpg",
+              progress: 0.95,
               onTap: () {
                 Navigator.push(
                   context,
@@ -48,10 +47,8 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               },
             ),
             CourseCard(
-              teacher: "Hanna Rose",
-              title: "Alghorithm",
-              time: "10:30 - 11:30 am",
-              image: "assets/images/directions.jpg",
+              title: "Algorithm",
+              progress: 0.80,
               onTap: () {
                 Navigator.push(
                   context,
@@ -60,10 +57,8 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               },
             ),
             CourseCard(
-              teacher: "Hanna Rose",
               title: "Al-Jabr",
-              time: "10:30 - 11:30 am",
-              image: "assets/images/directions.jpg",
+              progress: 0.70,
               onTap: () {
                 Navigator.push(
                   context,
@@ -72,10 +67,8 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               },
             ),
             CourseCard(
-              teacher: "Hanna Rose",
               title: "Geometry",
-              time: "10:30 - 11:30 am",
-              image: "assets/images/directions.jpg",
+              progress: 0.60,
               onTap: () {
                 Navigator.push(
                   context,
@@ -84,10 +77,8 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               },
             ),
             CourseCard(
-              teacher: "Hanna Rose",
               title: "Integers",
-              time: "10:30 - 11:30 am",
-              image: "assets/images/directions.jpg",
+              progress: 0.85,
               onTap: () {
                 Navigator.push(
                   context,
@@ -96,10 +87,8 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               },
             ),
             CourseCard(
-              teacher: "Hanna Rose",
               title: "Algebraic",
-              time: "10:30 - 11:30 am",
-              image: "assets/images/directions.jpg",
+              progress: 0.90,
               onTap: () {
                 Navigator.push(
                   context,
@@ -108,10 +97,8 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               },
             ),
             CourseCard(
-              teacher: "Hanna Rose",
               title: "Percentages",
-              time: "10:30 - 11:30 am",
-              image: "assets/images/directions.jpg",
+              progress: 0.75,
               onTap: () {
                 Navigator.push(
                   context,
@@ -127,17 +114,13 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
 }
 
 class CourseCard extends StatelessWidget {
-  final String teacher;
   final String title;
-  final String time;
-  final String image;
+  final double progress;
   final VoidCallback? onTap;
 
   const CourseCard({
-    required this.teacher,
     required this.title,
-    required this.time,
-    required this.image,
+    required this.progress,
     this.onTap,
   });
 
@@ -146,33 +129,40 @@ class CourseCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
+        color: Colors.deepPurple,  // Warna ungu untuk kartu
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,  // Warna putih untuk teks
+                  ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                  borderRadius: BorderRadius.circular(8.0),
+              CircularPercentIndicator(
+                radius: 32.0,
+                lineWidth: 6.0,
+                percent: progress,
+                center: Text(
+                  "${(progress * 100).toStringAsFixed(1)}%",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14.0,
+                    color: Colors.white,  // Warna putih untuk teks indikator
+                  ),
                 ),
-                child: const Icon(
-                  Icons.bookmark,
-                  color: Colors.white,
-                ),
+                progressColor: Colors.green,
+                backgroundColor: Colors.white24,  // Warna latar belakang indikator
               ),
             ],
           ),
