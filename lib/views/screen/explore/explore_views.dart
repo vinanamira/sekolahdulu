@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/screen/explore/list_materi.dart';
+import 'package:assesment2/views/screen/explore/list_materi_views.dart';
 
 
 class ExploreScreen extends StatefulWidget {

@@ -15,7 +15,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(
+            Navigator.pop(
               context,
               MaterialPageRoute(builder: (context) => const ExploreScreen()), 
             );
