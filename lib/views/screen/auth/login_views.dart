@@ -185,7 +185,7 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).push(
+                            Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) => HomeNavbarWidget(),
                               ),

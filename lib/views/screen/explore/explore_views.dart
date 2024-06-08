@@ -16,17 +16,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HomeNavbarWidget(),
-              ),
-            );
-          },
-        ),
         flexibleSpace: Align(
           alignment: Alignment.centerRight,
           child: Padding(
