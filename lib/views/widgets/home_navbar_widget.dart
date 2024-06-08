@@ -3,7 +3,6 @@ import 'package:assesment2/views/screen/beranda/beranda_views.dart';
 import 'package:assesment2/views/screen/to_do_list/to_do_list_views.dart';
 import 'package:assesment2/views/screen/explore/explore_views.dart';
 import 'package:assesment2/views/screen/profile/profile_views.dart';
-import 'package:assesment2/views/screen/materi/course_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 
@@ -32,7 +31,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
   void initState() {
     _selectedIndex = widget.isFromHome ? 2 : 0;
     tabController = TabController(
-      length: 5,
+      length: 4,
       vsync: this,
       initialIndex: _selectedIndex,
     );
@@ -50,7 +49,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
 
   final List<Widget> _pageViews = [
     const HomeScreen(),
-    const ToDoListScreen(),
+    const TodoListScreen(),
     const ExploreScreen(),
     ProfileScreen(),
   ];
