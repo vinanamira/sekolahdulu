@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -82,54 +83,18 @@ class ProfileScreen extends StatelessWidget {
             ),
             Spacer(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
+              padding: const EdgeInsets.only(bottom: 150.0),
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/logo.png', // Path to the logo
-                    height: 50,
-                  ),
-                  Text(
-                    'ekolahdulu',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.purple,
-                    ),
+                    'assets/images/profle.jpg', // Path to the logo
+                    height: 300,
                   ),
                 ],
               ),
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.purple,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white.withOpacity(0.7),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lock),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.access_time),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '',
-          ),
-        ],
       ),
     );
   }

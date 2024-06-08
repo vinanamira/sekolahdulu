@@ -3,7 +3,7 @@ import 'package:assesment2/views/screen/beranda/beranda_views.dart';
 import 'package:assesment2/views/screen/to_do_list/to_do_list_views.dart';
 import 'package:assesment2/views/screen/explore/explore_views.dart';
 import 'package:assesment2/views/screen/history/history_views.dart';
-import 'package:assesment2/views/screen/setting/setting_views.dart';
+import 'package:assesment2/views/screen/profile/profile_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 
@@ -53,7 +53,7 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
     const ToDoListScreen(),
     const ExploreScreen(),
     const HistoryScreen(),
-    const SettingScreen(),
+    ProfileScreen(),
   ];
 
   void _onPageTapped(int index) {
@@ -110,13 +110,6 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
               child: Icon(
                 Icons.video_collection,
                 color: _selectedIndex == 2 ? selectedColor : unselectedColor,
-              ),
-            ),
-            SizedBox(
-              height: 60,
-              child: Icon(
-                Icons.access_time_filled,
-                color: _selectedIndex == 3 ? selectedColor : unselectedColor,
               ),
             ),
             SizedBox(
