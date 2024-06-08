@@ -1,10 +1,14 @@
 import 'package:assesment2/views/screen/auth/login_views.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
   // Pastiin semua widget flutter initialized
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Inisialisasi Firebase
+  await Firebase.initializeApp();
 
   // Set orientasi layar agar portrait (up / down)
   SystemChrome.setPreferredOrientations([

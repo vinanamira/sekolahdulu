@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/explore/list_materi_views.dart';
-import 'package:assesment2/views/screen/beranda/beranda_views.dart'; // Pastikan impor ini benar
+// Pastikan impor ini benar
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -15,15 +15,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()), // Pastikan kelas ini benar
-            );
-          },
-        ),
         flexibleSpace: Align(
           alignment: Alignment.centerRight,
           child: Padding(
@@ -113,7 +104,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LiveCoursesScreen()),
                       );
                     },
                   ),
@@ -124,7 +116,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LiveCoursesScreen()),
                       );
                     },
                   ),
@@ -135,7 +128,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LiveCoursesScreen()),
                       );
                     },
                   ),
@@ -146,14 +140,16 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LiveCoursesScreen()),
                       );
                     },
                   ),
                 ],
               ),
               const SizedBox(height: 20),
-              Text('Popular Course', style: Theme.of(context).textTheme.titleLarge),
+              Text('Popular Course',
+                  style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 10),
               GridView.count(
                 shrinkWrap: true,
@@ -170,7 +166,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LiveCoursesScreen()),
                       );
                     },
                   ),
@@ -181,7 +178,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LiveCoursesScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LiveCoursesScreen()),
                       );
                     },
                   ),
@@ -221,7 +219,8 @@ class CourseCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(8.0)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(8.0)),
               child: Image.asset(
                 imageUrl,
                 fit: BoxFit.cover,
@@ -230,7 +229,8 @@ class CourseCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -240,7 +240,8 @@ class CourseCard extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 4),
                         Text(
@@ -258,7 +259,8 @@ class CourseCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.arrow_forward, color: Colors.white),
+                      icon:
+                          const Icon(Icons.arrow_forward, color: Colors.white),
                       onPressed: onTap,
                     ),
                   ),

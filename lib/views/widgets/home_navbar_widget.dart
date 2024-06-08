@@ -1,3 +1,4 @@
+
 import 'package:assesment2/views/screen/beranda/beranda_views.dart';
 import 'package:assesment2/views/screen/to_do_list/to_do_list_views.dart';
 import 'package:assesment2/views/screen/explore/explore_views.dart';
@@ -29,13 +30,17 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
 
   @override
   void initState() {
-    tabController = TabController(length: 5, vsync: this);
-    tabController.animation!.addListener(
-      () {
-        final value = tabController.animation!.value.round();
+    _selectedIndex = widget.isFromHome ? 2 : 0;
+    tabController = TabController(
+      length: 5,
+      vsync: this,
+      initialIndex: _selectedIndex,
+    );
 
-        if (value != _selectedIndex && mounted) {
-          _onPageTapped(value);
+    tabController.addListener(
+      () {
+        if (tabController.indexIsChanging) {
+          _onPageTapped(tabController.index);
         }
       },
     );
@@ -59,14 +64,6 @@ class _HomeNavbarWidgetState extends State<HomeNavbarWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.isFromHome) {
-      setState(() {
-        _selectedIndex = 2;
-      });
-
-      tabController.index = _selectedIndex;
-    }
-
     return Scaffold(
       body: BottomBar(
         offset: 45,

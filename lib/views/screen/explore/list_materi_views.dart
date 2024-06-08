@@ -1,3 +1,4 @@
+import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/materi/materi_views.dart';
 import 'package:assesment2/views/screen/explore/explore_views.dart';
@@ -16,9 +17,11 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(
+            Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const ExploreScreen()),
+              MaterialPageRoute(
+                builder: (context) => const HomeNavbarWidget(),
+              ),
             );
           },
         ),
@@ -129,7 +132,7 @@ class CourseCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        color: Colors.deepPurple,  // Warna ungu untuk kartu
+        color: Colors.deepPurple, // Warna ungu untuk kartu
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
@@ -145,7 +148,7 @@ class CourseCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,  // Warna putih untuk teks
+                    color: Colors.white, // Warna putih untuk teks
                   ),
                 ),
               ),
@@ -158,11 +161,12 @@ class CourseCard extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14.0,
-                    color: Colors.white,  // Warna putih untuk teks indikator
+                    color: Colors.white, // Warna putih untuk teks indikator
                   ),
                 ),
                 progressColor: Colors.green,
-                backgroundColor: Colors.white24,  // Warna latar belakang indikator
+                backgroundColor:
+                    Colors.white24, // Warna latar belakang indikator
               ),
             ],
           ),
