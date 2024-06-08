@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -167,7 +169,15 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                                     .signInWithEmailAndPassword(
                                   email: _emailAddressController.text,
                                   password: _passwordController.text,
-                                );
+                                ).then((value) {
+                                  log(value.user!.uid, name: 'User UID');
+                                }, onError: (value) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Login failed! ${value.message}'),
+                                    ),
+                                  );
+                                });
 
                                 if (FirebaseAuth.instance.currentUser != null) {
                                   final user =
