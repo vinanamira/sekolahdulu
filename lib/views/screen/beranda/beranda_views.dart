@@ -165,11 +165,11 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomeNavbarWidget(
-                                  selectedIndex: 2,
+                                builder: (context) => const HomeNavbarWidget(
+                                  isFromHome: true,
                                 ),
                               ),
                             );
