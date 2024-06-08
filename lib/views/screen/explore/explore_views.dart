@@ -1,7 +1,6 @@
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/explore/list_materi_views.dart';
-import 'package:assesment2/views/screen/beranda/beranda_views.dart'; // Pastikan impor ini benar
+// Pastikan impor ini benar
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
