@@ -11,7 +11,7 @@ class UserService {
   User getCurrentUser() {
     // Simulasi pengambilan data pengguna dari backend atau penyimpanan lokal
     return User(
-      username: 'Kevin Anggara',
+      username: 'Vina',
       profil: 'assets/images/profile-pict.jpg', // Path ke gambar profil
     );
   }
@@ -47,7 +47,6 @@ class ProfileScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(59, 38, 122, 1),
               ),
             ),
             const SizedBox(height: 40),
