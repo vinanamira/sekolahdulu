@@ -13,103 +13,95 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HomeNavbarWidget(),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Profile and back button section
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.black),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Spacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: const [
+                      Text(
+                        'Kevin Anggara',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '18 y.o / SMA',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 8),
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/profile-pict.jpg'), // Replace with your profile image asset
+                    radius: 20,
+                  ),
+                ],
               ),
-            );
-          },
-        ),
-        title: const Text("Lesson"),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: ListView(
-          children: [
-            const Text(
-              "Today's Exercise",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+              SizedBox(height: 16),
+              // Exercise title
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Your exercise',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 61, 7, 109),
+                  ),
+                ),
               ),
-            ),
-            CourseCard(
-              title: "Arithmetic Operations",
-              progress: 0.95,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ThirdPage()),
-                );
-              },
-            ),
-            CourseCard(
-              title: "Algorithm",
-              progress: 0.80,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ThirdPage()),
-                );
-              },
-            ),
-            CourseCard(
-              title: "Al-Jabr",
-              progress: 0.70,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ThirdPage()),
-                );
-              },
-            ),
-            CourseCard(
-              title: "Geometry",
-              progress: 0.60,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ThirdPage()),
-                );
-              },
-            ),
-            CourseCard(
-              title: "Integers",
-              progress: 0.85,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ThirdPage()),
-                );
-              },
-            ),
-            CourseCard(
-              title: "Algebraic",
-              progress: 0.90,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ThirdPage()),
-                );
-              },
-            ),
-            CourseCard(
-              title: "Percentages",
-              progress: 0.75,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ThirdPage()),
-                );
-              },
-            ),
-          ],
+              SizedBox(height: 16),
+              // List of courses
+              Expanded(
+                child: ListView(
+                  children: [
+                    CourseCard(
+                      title: "Oral Communication",
+                      progress: 0.95,
+                    ),
+                    CourseCard(
+                      title: "Listening",
+                      progress: 0.95,
+                    ),
+                    CourseCard(
+                      title: "Reading",
+                      progress: 0.95,
+                    ),
+                    CourseCard(
+                      title: "Writing Texts",
+                      progress: 0.95,
+                    ),
+                    CourseCard(
+                      title: "Grammar",
+                      progress: 0.95,
+                    ),
+                    CourseCard(
+                      title: "Integrated English",
+                      progress: 0.95,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -119,57 +111,52 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
 class CourseCard extends StatelessWidget {
   final String title;
   final double progress;
-  final VoidCallback? onTap;
 
   const CourseCard({
     required this.title,
     required this.progress,
-    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        color: Colors.deepPurple, // Warna ungu untuk kartu
-        margin: const EdgeInsets.symmetric(vertical: 8.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+    return Card(
+      color: Colors.white, // Set the background color to white
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide(
+          color: Colors.grey.shade300, // Thin border color
+          width: 1.0, // Thin border width
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white, // Warna putih untuk teks
-                  ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 24.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Color.fromARGB(255, 69, 20, 128),
+              ),
+            ),
+            CircularPercentIndicator(
+              radius: 30.0,
+              lineWidth: 6.0,
+              percent: progress,
+              center: Text(
+                "${(progress * 100).toStringAsFixed(0)}%",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.0,
+                  color: Colors.green,
                 ),
               ),
-              CircularPercentIndicator(
-                radius: 32.0,
-                lineWidth: 6.0,
-                percent: progress,
-                center: Text(
-                  "${(progress * 100).toStringAsFixed(1)}%",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.0,
-                    color: Colors.white, // Warna putih untuk teks indikator
-                  ),
-                ),
-                progressColor: Colors.green,
-                backgroundColor:
-                    Colors.white24, // Warna latar belakang indikator
-              ),
-            ],
-          ),
+              progressColor: Colors.green,
+              backgroundColor: Colors.grey.shade200,
+            ),
+          ],
         ),
       ),
     );
