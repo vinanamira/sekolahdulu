@@ -158,7 +158,7 @@ class CourseCard extends StatelessWidget {
                 percent: progress,
                 center: Text(
                   "${(progress * 100).toStringAsFixed(1)}%",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14.0,
                     color: Colors.white, // Warna putih untuk teks indikator
