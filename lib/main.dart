@@ -1,5 +1,6 @@
 import 'package:assesment2/data/local/todo_db.dart';
-import 'package:assesment2/data/model/todo.dart';
+import 'package:assesment2/data/local/model/todo.dart';
+import 'package:assesment2/data/materi_controller.dart';
 import 'package:assesment2/data/todo_controller.dart';
 import 'package:assesment2/firebase_options.dart';
 import 'package:assesment2/views/screen/auth/login_views.dart';
@@ -23,6 +24,7 @@ void main() async {
   await TodoDB.init();
 
   Get.put(TodoController(), permanent: true);
+  Get.put(MateriController(), permanent: true);
 
   // Set orientasi layar agar portrait (up / down)
   SystemChrome.setPreferredOrientations([

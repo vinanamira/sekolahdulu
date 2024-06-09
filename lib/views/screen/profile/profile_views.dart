@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 
 class User {
   final String username;
@@ -20,6 +19,8 @@ class UserService {
 
 class ProfileScreen extends StatelessWidget {
   final UserService userService = UserService();
+
+  ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

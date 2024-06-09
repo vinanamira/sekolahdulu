@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:assesment2/data/model/todo.dart';
+import 'package:assesment2/data/local/model/todo.dart';
 import 'package:assesment2/data/todo_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,10 +19,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text('Daily Task List'),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: SafeArea(
         child: ValueListenableBuilder(
@@ -46,10 +47,14 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
                     return Card(
                       margin: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 16.0),
+                        vertical: 8.0,
+                        horizontal: 16.0,
+                      ),
                       child: ListTile(
-                        title: Text(todo!.title,
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        title: Text(
+                          todo!.title,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         subtitle: Text(
                           'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
                           style: TextStyle(color: Colors.grey[600]),
@@ -75,19 +80,21 @@ class _TodoListScreenState extends State<TodoListScreen> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AddEditTodoScreen(
-                isEditing: false,
+      floatingActionButton: Container(
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AddEditTodoScreen(
+                  isEditing: false,
+                ),
               ),
-            ),
-          );
-        },
-        tooltip: 'Add Daily Task',
-        child: const Icon(Icons.add),
+            );
+          },
+          tooltip: 'Add Daily Task',
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
@@ -150,7 +157,8 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isEditing ? 'Edit Daily Task' : 'Add New Daily Task'),
+        title:
+            Text(widget.isEditing ? 'Edit Daily Task' : 'Add New Daily Task'),
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: SingleChildScrollView(
@@ -164,7 +172,8 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
             ),
             const SizedBox(height: 20),
             TextField(
-              decoration: const InputDecoration(labelText: 'Daily Task Description'),
+              decoration:
+                  const InputDecoration(labelText: 'Daily Task Description'),
               controller: _descriptionController,
             ),
             const SizedBox(height: 20),

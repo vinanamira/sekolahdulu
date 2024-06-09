@@ -17,19 +17,13 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -57,6 +51,28 @@ class DefaultFirebaseOptions {
     appId: '1:119111246639:android:b05bf20e7297f0387c77da',
     messagingSenderId: '119111246639',
     projectId: 'sekolahdulu-5936e',
+    databaseURL: 'https://sekolahdulu-5936e-default-rtdb.firebaseio.com',
     storageBucket: 'sekolahdulu-5936e.appspot.com',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyA6z0wVHk21CgB-ddOMn3cjDl63ueBYiT4',
+    appId: '1:119111246639:web:1dfd5c6aa60bdf3d7c77da',
+    messagingSenderId: '119111246639',
+    projectId: 'sekolahdulu-5936e',
+    authDomain: 'sekolahdulu-5936e.firebaseapp.com',
+    databaseURL: 'https://sekolahdulu-5936e-default-rtdb.firebaseio.com',
+    storageBucket: 'sekolahdulu-5936e.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCnGwtZy6X7tPX_mjbJIlufNDBph2H7_dA',
+    appId: '1:119111246639:ios:4cbaf36f00ae66997c77da',
+    messagingSenderId: '119111246639',
+    projectId: 'sekolahdulu-5936e',
+    databaseURL: 'https://sekolahdulu-5936e-default-rtdb.firebaseio.com',
+    storageBucket: 'sekolahdulu-5936e.appspot.com',
+    iosBundleId: 'com.example.sekolahdulu',
+  );
+
 }

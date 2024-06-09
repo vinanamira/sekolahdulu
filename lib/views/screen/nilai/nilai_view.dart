@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/screen/beranda/beranda_views.dart'; 
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 
 class CongratulationScreen extends StatelessWidget {
+  const CongratulationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {},
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(top: 20.0), // Add padding to the top
+        title: const Padding(
+          padding: EdgeInsets.only(top: 20.0), // Add padding to the top
           child: Row(
             children: [
               Spacer(),
@@ -25,7 +26,8 @@ class CongratulationScreen extends StatelessWidget {
               ),
               SizedBox(width: 10),
               CircleAvatar(
-                backgroundImage: AssetImage('assets/images/avatar.png'), // Add your image asset here
+                backgroundImage: AssetImage(
+                    'assets/images/avatar.png'), // Add your image asset here
               ),
             ],
           ),
@@ -43,76 +45,82 @@ class CongratulationScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // Align all children to the start
+              crossAxisAlignment:
+                  CrossAxisAlignment.start, // Align all children to the start
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 32, left: 24),
-                  child: Text(
+                  margin: const EdgeInsets.only(top: 32, left: 24),
+                  child: const Text(
                     'Congrats! Keep on going Kevin!',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.start, // Align text to the start
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
-                  margin: EdgeInsets.only(left: 24),
-                  child: Text(
+                  margin: const EdgeInsets.only(left: 24),
+                  child: const Text(
                     '"Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle." - Christian D. Larson',
                     style: TextStyle(fontSize: 16),
                     textAlign: TextAlign.start, // Align text to the start
                   ),
                 ),
-                
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Stack(
                   children: [
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Column(
                         children: [
-                          Image.asset('assets/images/medal.png'), // Add your image asset here
-                          SizedBox(height: 10),
+                          Image.asset(
+                              'assets/images/medal.png'), // Add your image asset here
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
                     Positioned(
                       top: 10,
                       right: 10,
-                      child: Image.asset('assets/images/star.png'), // Add your image asset here
+                      child: Image.asset(
+                          'assets/images/star.png'), // Add your image asset here
                     ),
                   ],
                 ),
-                SizedBox(height: 1),
+                const SizedBox(height: 1),
                 Container(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: Color.fromARGB(255, 110, 110, 110).withOpacity(0.5),
+                        color: const Color.fromARGB(255, 110, 110, 110)
+                            .withOpacity(0.5),
                       ),
                     ],
                   ),
                   child: Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.all(12.0),
                         decoration: BoxDecoration(
                           color: Colors.green[100],
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Text(
+                        child: const Text(
                           '96',
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Pronunciation Practice', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          const Text('Pronunciation Practice',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
                           Row(
                             children: [
                               Image.asset('assets/images/star.png'),
@@ -121,31 +129,41 @@ class CongratulationScreen extends StatelessWidget {
                               Image.asset('assets/images/star.png'),
                             ],
                           ),
-                          Text('Kevin Anggara • 10 mins', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                          const Text('Kevin Anggara • 10 mins',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.grey)),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeNavbarWidget()),
+                      MaterialPageRoute(
+                        builder: (context) => const HomeNavbarWidget(),
+                      ),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Done',
-                    style: TextStyle(color: Colors.white), // Set text color to white
+                    style: TextStyle(
+                      color: Colors.white,
+                    ), // Set text color to white
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 46, 10, 94), // Background color
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20), // Button padding
-                    textStyle: TextStyle(fontSize: 16),
-                    minimumSize: Size(double.infinity, 50), // Minimum width
+                    backgroundColor: const Color.fromARGB(
+                        255, 46, 10, 94), // Background color
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 20), // Button padding
+                    textStyle: const TextStyle(fontSize: 16),
+                    minimumSize:
+                        const Size(double.infinity, 50), // Minimum width
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20), // Rounded corners
+                      borderRadius:
+                          BorderRadius.circular(20), // Rounded corners
                     ),
                   ),
                 ),

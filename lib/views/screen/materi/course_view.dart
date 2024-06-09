@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/nilai/nilai_view.dart'; // Pastikan Anda mengimpor file nilai_view.dart
-import 'package:assesment2/views/screen/materi/materi_views.dart';
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 
 class QuizScreen extends StatelessWidget {
+  const QuizScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +11,7 @@ class QuizScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            // Add back button functionality
+            Navigator.pop(context);
           },
         ),
         title: Text(''),
@@ -83,7 +83,9 @@ class QuizScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CongratulationScreen()), // Navigate to NilaiView
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CongratulationScreen()), // Navigate to NilaiView
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -140,7 +142,9 @@ class OptionButton extends StatelessWidget {
           // Add option button functionality
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: selected ? Color.fromARGB(255, 195, 170, 208) : Colors.grey.shade100,
+          backgroundColor: selected
+              ? Color.fromARGB(255, 195, 170, 208)
+              : Colors.grey.shade100,
           foregroundColor: selected ? Colors.white : Colors.black,
           minimumSize: Size(double.infinity, 50),
           shape: RoundedRectangleBorder(

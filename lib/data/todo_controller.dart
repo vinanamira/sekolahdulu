@@ -1,5 +1,5 @@
 import 'package:assesment2/data/local/todo_db.dart';
-import 'package:assesment2/data/model/todo.dart';
+import 'package:assesment2/data/local/model/todo.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 

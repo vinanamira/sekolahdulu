@@ -1,54 +1,52 @@
+import 'package:assesment2/data/materi_controller.dart';
+import 'package:assesment2/data/remote/materi.dart';
+import 'package:assesment2/views/screen/materi/list_materi_views.dart';
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'package:assesment2/views/screen/materi/course_view.dart'; // Import the CourseScreen from the materi folder
-import 'package:assesment2/views/screen/explore/list_materi_views.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:get/get.dart';
+import 'package:assesment2/views/screen/materi/course_view.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart'; // Import the CourseScreen from the materi folder
 
 class ThirdPage extends StatefulWidget {
-  const ThirdPage({Key? key});
+  final String title;
+  final int index;
+
+  const ThirdPage({super.key, required this.title, required this.index});
 
   @override
-  _ThirdPageState createState() => _ThirdPageState();
+  State<ThirdPage> createState() => _ThirdPageState();
 }
 
 class _ThirdPageState extends State<ThirdPage> {
-  late YoutubePlayerController _controller;
-  late DatabaseReference _databaseRef;
+  final MateriController _materiController = Get.find();
+  // late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = YoutubePlayerController(
-      initialVideoId: 'ENkG7rZ60eg', // ID video YouTube dari link Anda
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-        mute: false,
-      ),
-    );
-    _initializeFirebase();
+    // _controller =
+    // _initializeFirebase();
   }
 
-  Future<void> _initializeFirebase() async {
-    await Firebase.initializeApp();
-    _databaseRef = FirebaseDatabase.instance.reference();
-    fetchVideoData('Algebra');
-  }
+  // Future<void> _initializeFirebase() async {
+  //   await Firebase.initializeApp();
+  //   _databaseRef = FirebaseDatabase.instance.reference();
+  //   fetchVideoData('Algebra');
+  // }
 
-  void fetchVideoData(String key) {
-    _databaseRef.child(key).once().then((DataSnapshot snapshot) {
-      var data = snapshot.value as Map<dynamic, dynamic>;
-      setState(() {
-        _controller.load(YoutubePlayer.convertUrlToId(data['url'])!);
-      });
-    });
-  }
+  // void fetchVideoData(String key) {
+  //   _databaseRef.child(key).once().then((DataSnapshot snapshot) {
+  //     var data = snapshot.value as Map<dynamic, dynamic>;
+  //     setState(() {
+  //       _controller.load(YoutubePlayer.convertUrlToId(data['url'])!);
+  //     });
+  //   });
+  // }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +56,11 @@ class _ThirdPageState extends State<ThirdPage> {
           icon: const Icon(Icons.keyboard_arrow_left),
           iconSize: 36,
           onPressed: () {
-            Navigator.pop(
+            Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => LiveCoursesScreen()), 
+              MaterialPageRoute(
+                builder: (context) => const LiveCoursesScreen(),
+              ),
             );
           },
         ),
@@ -116,11 +116,40 @@ class _ThirdPageState extends State<ThirdPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                YoutubePlayer(
-                  controller: _controller,
-                  showVideoProgressIndicator: true,
-                  onReady: () {},
-                ),
+                FutureBuilder(
+                    future: _materiController.fetchSpecificMateri(
+                        widget.index, widget.title),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          final materi = snapshot.data as Materi;
+
+                          return YoutubePlayer(
+                            controller: YoutubePlayerController(
+                              initialVideoId: materi.urlVideo.substring(
+                                materi.urlVideo.lastIndexOf('/'),
+                                materi.urlVideo.length,
+                              ), // ID video YouTube dari link Anda
+                              flags: const YoutubePlayerFlags(
+                                autoPlay: false,
+                                mute: false,
+                              ),
+                            ),
+                            showVideoProgressIndicator: true,
+                            onReady: () {},
+                          );
+                        }
+                      }
+
+                      return Container();
+                    }),
                 const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(16.0),
@@ -191,73 +220,87 @@ class _ThirdPageState extends State<ThirdPage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.play_circle_fill,
-                        color: Color.fromRGBO(59, 38, 122, 1),
-                        size: 36,
-                      ),
-                      SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Addition of Algebraic',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '20 minutes',
-                            style: TextStyle(fontSize: 12, color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.play_circle_fill,
-                        color: Color.fromRGBO(59, 38, 122, 1),
-                        size: 36,
-                      ),
-                      SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Subtraction of Algebraic',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '15 minutes',
-                            style: TextStyle(fontSize: 12, color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                FutureBuilder(
+                    future: _materiController.fetchAllMateri(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          List<Materi> materiList =
+                              snapshot.data as List<Materi>;
+
+                          List<Materi> filteredList = materiList
+                              .where((e) => e.judul != widget.title)
+                              .toList();
+
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: filteredList.length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ThirdPage(
+                                      title: filteredList[index].judul,
+                                      index: index,
+                                    ),
+                                  ),
+                                ),
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  padding: const EdgeInsets.all(16.0),
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Colors.grey.shade300),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.play_circle_fill,
+                                        color: Color.fromRGBO(59, 38, 122, 1),
+                                        size: 36,
+                                      ),
+                                      const SizedBox(width: 16),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            filteredList[index].judul,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            filteredList[index].durasi,
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        }
+                      }
+
+                      return Container();
+                    }),
                 const SizedBox(height: 24),
                 Center(
                   child: ElevatedButton(
@@ -265,7 +308,7 @@ class _ThirdPageState extends State<ThirdPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => QuizScreen(),
+                          builder: (context) => const QuizScreen(),
                         ),
                       );
                     },
