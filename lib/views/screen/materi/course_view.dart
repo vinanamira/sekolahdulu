@@ -9,12 +9,12 @@ class QuizScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text(''),
+        title: const Text(''),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.white,
@@ -24,21 +24,21 @@ class QuizScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Question 1',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.purple.shade50,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Text(
+              child: const Text(
                 'Among the triangles with side lengths as follows which are classified as right triangles are:',
                 style: TextStyle(
                   fontSize: 16,
@@ -46,19 +46,19 @@ class QuizScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             OptionButton(text: '2 cm, 4 cm, 6 cm', selected: false),
             OptionButton(text: '8 cm, 6 cm, 7 cm', selected: false),
             OptionButton(text: '9 cm, 9 cm, 9 cm', selected: true),
             OptionButton(text: '3 cm, 4 cm, 5 cm', selected: false),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.green.shade50,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -78,24 +78,24 @@ class QuizScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          CongratulationScreen()), // Navigate to NilaiView
+                          const CongratulationScreen()), // Navigate to NilaiView
                 );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepPurple,
-                minimumSize: Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Next',
                 style: TextStyle(
                   fontSize: 16,
@@ -104,12 +104,12 @@ class QuizScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(12, (index) {
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(
@@ -119,7 +119,7 @@ class QuizScreen extends StatelessWidget {
                 );
               }),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           ],
         ),
       ),
@@ -136,17 +136,17 @@ class OptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 4),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       child: ElevatedButton(
         onPressed: () {
           // Add option button functionality
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: selected
-              ? Color.fromARGB(255, 195, 170, 208)
+              ? const Color.fromARGB(255, 195, 170, 208)
               : Colors.grey.shade100,
           foregroundColor: selected ? Colors.white : Colors.black,
-          minimumSize: Size(double.infinity, 50),
+          minimumSize: const Size(double.infinity, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
             side: BorderSide.none, // No border shadow
@@ -155,7 +155,7 @@ class OptionButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),

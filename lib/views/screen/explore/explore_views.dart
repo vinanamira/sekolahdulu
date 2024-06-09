@@ -63,7 +63,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-            margin: EdgeInsets.only(bottom: 72),
+            margin: const EdgeInsets.only(bottom: 72),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -108,7 +108,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LiveCoursesScreen()),
+                              builder: (context) => const LiveCoursesScreen()),
                         );
                       },
                     ),
@@ -120,7 +120,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LiveCoursesScreen()),
+                              builder: (context) => const LiveCoursesScreen()),
                         );
                       },
                     ),
@@ -132,7 +132,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LiveCoursesScreen()),
+                              builder: (context) => const LiveCoursesScreen()),
                         );
                       },
                     ),
@@ -144,7 +144,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LiveCoursesScreen()),
+                              builder: (context) => const LiveCoursesScreen()),
                         );
                       },
                     ),
@@ -170,7 +170,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LiveCoursesScreen()),
+                              builder: (context) => const LiveCoursesScreen()),
                         );
                       },
                     ),
@@ -182,7 +182,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LiveCoursesScreen()),
+                              builder: (context) => const LiveCoursesScreen()),
                         );
                       },
                     ),

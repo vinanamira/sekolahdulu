@@ -53,7 +53,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                       child: ListTile(
                         title: Text(
                           todo!.title,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
                           'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
@@ -80,7 +80,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
           },
         ),
       ),
-      floatingActionButton: Container(
+      floatingActionButton: Positioned(
+        bottom: 240, 
+        right: 16,
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(
@@ -182,7 +184,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
                 const Text('Due Date: '),
                 Text(
                   '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 20),
                 TextButton(
@@ -268,12 +270,12 @@ class TodoDetailScreen extends StatelessWidget {
           children: [
             Text(
               'Title: ${todo.title}',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             Text(
               'Description: ${todo.description}',
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 10),
             Text(
