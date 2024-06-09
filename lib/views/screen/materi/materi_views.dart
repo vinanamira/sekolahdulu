@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:assesment2/views/screen/materi/course_view.dart'; // Import the CourseScreen from the materi folder
 import 'package:assesment2/views/screen/explore/list_materi_views.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class ThirdPage extends StatefulWidget {
-  const ThirdPage({super.key});
+  const ThirdPage({Key? key});
 
   @override
   _ThirdPageState createState() => _ThirdPageState();
@@ -12,6 +14,7 @@ class ThirdPage extends StatefulWidget {
 
 class _ThirdPageState extends State<ThirdPage> {
   late YoutubePlayerController _controller;
+  late DatabaseReference _databaseRef;
 
   @override
   void initState() {
@@ -23,6 +26,22 @@ class _ThirdPageState extends State<ThirdPage> {
         mute: false,
       ),
     );
+    _initializeFirebase();
+  }
+
+  Future<void> _initializeFirebase() async {
+    await Firebase.initializeApp();
+    _databaseRef = FirebaseDatabase.instance.reference();
+    fetchVideoData('Algebra');
+  }
+
+  void fetchVideoData(String key) {
+    _databaseRef.child(key).once().then((DataSnapshot snapshot) {
+      var data = snapshot.value as Map<dynamic, dynamic>;
+      setState(() {
+        _controller.load(YoutubePlayer.convertUrlToId(data['url'])!);
+      });
+    });
   }
 
   @override

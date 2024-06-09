@@ -28,10 +28,10 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                       Navigator.pop(context);
                     },
                   ),
-                  Spacer(),
-                  Column(
+                  const Spacer(),
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    children: const [
+                    children: [
                       Text(
                         'Kevin Anggara',
                         style: TextStyle(
@@ -48,16 +48,16 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(width: 8),
-                  CircleAvatar(
+                  const SizedBox(width: 8),
+                  const CircleAvatar(
                     backgroundImage: AssetImage('assets/images/profile-pict.jpg'), // Replace with your profile image asset
                     radius: 20,
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               // Exercise title
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Your exercise',
@@ -68,7 +68,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               // List of courses
               Expanded(
                 child: ListView(
@@ -80,7 +80,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ThirdPage(),
+                            builder: (context) => const ThirdPage(),
                           ),
                         );
                       },
@@ -92,7 +92,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ThirdPage(),
+                            builder: (context) => const ThirdPage(),
                           ),
                         );
                       },
@@ -104,7 +104,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ThirdPage(),
+                            builder: (context) => const ThirdPage(),
                           ),
                         );
                       },
@@ -116,7 +116,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ThirdPage(),
+                            builder: (context) => const ThirdPage(),
                           ),
                         );
                       },
@@ -128,7 +128,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ThirdPage(),
+                            builder: (context) => const ThirdPage(),
                           ),
                         );
                       },
@@ -140,7 +140,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ThirdPage(),
+                            builder: (context) => const ThirdPage(),
                           ),
                         );
                       },
@@ -187,7 +187,7 @@ class CourseCard extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Color.fromARGB(255, 69, 20, 128),
@@ -199,7 +199,7 @@ class CourseCard extends StatelessWidget {
                 percent: progress,
                 center: Text(
                   "${(progress * 100).toStringAsFixed(0)}%",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14.0,
                     color: Colors.green,
