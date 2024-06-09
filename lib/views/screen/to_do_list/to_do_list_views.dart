@@ -20,9 +20,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('To-Do List'),
+        title: const Text('Daily Task List'),
         centerTitle: true,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
       ),
       body: SafeArea(
         child: ValueListenableBuilder(
@@ -86,7 +86,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
             ),
           );
         },
-        tooltip: 'Add To-Do',
+        tooltip: 'Add Daily Task',
         child: const Icon(Icons.add),
       ),
     );
@@ -150,8 +150,8 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isEditing ? 'Edit To-Do' : 'Add New To-Do'),
-        backgroundColor: Colors.blueAccent,
+        title: Text(widget.isEditing ? 'Edit Daily Task' : 'Add New Daily Task'),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -159,12 +159,12 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              decoration: const InputDecoration(labelText: 'To-Do Title'),
+              decoration: const InputDecoration(labelText: 'Daily Task Title'),
               controller: _titleController,
             ),
             const SizedBox(height: 20),
             TextField(
-              decoration: const InputDecoration(labelText: 'To-Do Description'),
+              decoration: const InputDecoration(labelText: 'Daily Task Description'),
               controller: _descriptionController,
             ),
             const SizedBox(height: 20),
@@ -248,9 +248,9 @@ class TodoDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('To-Do Details'),
+        title: const Text('Daily Task Details'),
         centerTitle: true,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -305,7 +305,7 @@ class TodoDetailScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Back to To-Do List'),
+              child: const Text('Back to Daily Task List'),
             ),
           ],
         ),
