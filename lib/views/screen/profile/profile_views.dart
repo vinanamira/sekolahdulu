@@ -52,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             ListTile(
-              leading: const Icon(Icons.logout, color: Colors.purple),
+              leading: const Icon(Icons.logout, color: Color.fromRGBO(59, 38, 122, 1)),
               title: const Text('Log out'),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
