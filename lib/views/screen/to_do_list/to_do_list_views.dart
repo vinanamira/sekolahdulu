@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:assesment2/data/model/todo.dart';
 import 'package:assesment2/data/todo_controller.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,8 @@ class _TodoListScreenState extends State<TodoListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('To-Do List'),
-        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
       ),
       body: SafeArea(
         child: ValueListenableBuilder(
@@ -32,7 +32,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
             if (box.isEmpty) {
               return const Center(
-                child: Text('No ToDo :)'),
+                child: Text(
+                  'No ToDo :)',
+                  style: TextStyle(fontSize: 20),
+                ),
               );
             } else {
               return GetBuilder<TodoController>(
@@ -41,22 +44,29 @@ class _TodoListScreenState extends State<TodoListScreen> {
                   itemBuilder: (context, index) {
                     var todo = _todoController.todoBox.getAt(index);
 
-                    return ListTile(
-                      title: Text(todo!.title),
-                      subtitle: Text(
-                        '${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TodoDetailScreen(
-                              todo: todo,
-                              index: index,
+                    return Card(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 16.0),
+                      child: ListTile(
+                        title: Text(todo!.title,
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        subtitle: Text(
+                          'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TodoDetailScreen(
+                                todo: todo,
+                                index: index,
+                              ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     );
                   },
                 ),
@@ -65,27 +75,19 @@ class _TodoListScreenState extends State<TodoListScreen> {
           },
         ),
       ),
-      floatingActionButton: Stack(
-        children: [
-          Positioned(
-            bottom: 125.0, // Adjust as needed
-            right: 16.0,
-            child: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddEditTodoScreen(
-                      isEditing: false,
-                    ),
-                  ),
-                );
-              },
-              tooltip: 'Tambah Tugas',
-              child: const Icon(Icons.add),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddEditTodoScreen(
+                isEditing: false,
+              ),
             ),
-          ),
-        ],
+          );
+        },
+        tooltip: 'Add To-Do',
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -148,41 +150,53 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isEditing ? 'Edit Tugas' : 'Tambah Tugas Baru'),
+        title: Text(widget.isEditing ? 'Edit To-Do' : 'Add New To-Do'),
+        backgroundColor: Colors.blueAccent,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              decoration: const InputDecoration(labelText: 'Judul Tugas'),
+              decoration: const InputDecoration(labelText: 'To-Do Title'),
               controller: _titleController,
             ),
             const SizedBox(height: 20),
             TextField(
-              decoration: const InputDecoration(labelText: 'Deskripsi Tugas'),
+              decoration: const InputDecoration(labelText: 'To-Do Description'),
               controller: _descriptionController,
             ),
             const SizedBox(height: 20),
             Row(
               children: [
-                const Text('Tanggal Batas: '),
+                const Text('Due Date: '),
                 Text(
                   '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 20),
                 TextButton(
                   onPressed: () {
                     presentDatePicker(context);
                   },
-                  child: const Text('Pilih Tanggal'),
+                  child: const Text('Pick Date'),
                 ),
               ],
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                if (_titleController.text.isEmpty ||
+                    _descriptionController.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('All fields are required'),
+                    ),
+                  );
+                  return;
+                }
+
                 if (widget.isEditing) {
                   if (widget.todo != null && widget.index != null) {
                     final oldTodo = widget.todo;
@@ -209,7 +223,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
                   Navigator.pop(context);
                 }
               },
-              child: Text(widget.isEditing ? 'Simpan Perubahan' : 'Simpan'),
+              child: Text(widget.isEditing ? 'Save Changes' : 'Save'),
             ),
           ],
         ),
@@ -218,7 +232,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
   }
 }
 
-class TodoDetailScreen extends StatefulWidget {
+class TodoDetailScreen extends StatelessWidget {
   const TodoDetailScreen({
     super.key,
     required this.index,
@@ -229,73 +243,72 @@ class TodoDetailScreen extends StatefulWidget {
   final Todo todo;
 
   @override
-  State<TodoDetailScreen> createState() => _TodoDetailScreenState();
-}
-
-class _TodoDetailScreenState extends State<TodoDetailScreen> {
-  final TodoController _todoController = Get.find();
-
-  @override
   Widget build(BuildContext context) {
+    final TodoController _todoController = Get.find();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Tugas'),
-        automaticallyImplyLeading: false,
+        title: const Text('To-Do Details'),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
       ),
-      body: StreamBuilder<Todo>(
-        stream: _todoController.getSingleTodo(widget.todo.uuid),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Judul: ${widget.todo.title}'),
-                  Text('Deskripsi: ${widget.todo.description}'),
-                  Text(
-                    'Tanggal Batas: ${widget.todo.dueDate.day}/${widget.todo.dueDate.month}/${widget.todo.dueDate.year}',
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AddEditTodoScreen(
-                                isEditing: true,
-                                todo: widget.todo,
-                                index: widget.index,
-                              ),
-                            ),
-                          );
-                        },
-                        child: const Text('Edit'),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Title: ${todo.title}',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Description: ${todo.description}',
+              style: TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Due Date: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddEditTodoScreen(
+                          isEditing: true,
+                          todo: todo,
+                          index: index,
+                        ),
                       ),
-                      const SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          _todoController.deleteTodo(widget.index);
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Hapus'),
-                      ),
-                    ],
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Kembali ke Daftar Tugas'),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return const SizedBox();
-        },
+                    );
+                  },
+                  child: const Text('Edit'),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    _todoController.deleteTodo(index);
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Delete'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back to To-Do List'),
+            ),
+          ],
+        ),
       ),
     );
   }
