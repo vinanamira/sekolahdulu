@@ -246,7 +246,7 @@ class _ThirdPageState extends State<ThirdPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CourseScreen(),
+                          builder: (context) => QuizScreen(),
                         ),
                       );
                     },

@@ -1,184 +1,160 @@
 import 'package:flutter/material.dart';
+import 'package:assesment2/views/screen/nilai/nilai_view.dart'; // Pastikan Anda mengimpor file nilai_view.dart
 import 'package:assesment2/views/screen/materi/materi_views.dart';
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 
-class CourseScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Quiz App',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
-      home: QuizScreen(),
-    );
-  }
-}
-
-class QuizScreen extends StatefulWidget {
-  @override
-  _QuizScreenState createState() => _QuizScreenState();
-}
-
-class _QuizScreenState extends State<QuizScreen> {
-  int _selectedIndex = 1;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class QuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ThirdPage()), 
-            );
+            // Add back button functionality
           },
         ),
-        title: const Text(''),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Skip',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
-        backgroundColor: Colors.transparent,
+        title: Text(''),
+        centerTitle: true,
         elevation: 0,
+        backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LinearProgressIndicator(
-                value: 0.75,
-                backgroundColor: Colors.grey[300],
-                valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Question 1',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(height: 10),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+            SizedBox(height: 16),
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.purple.shade50,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                'Among the triangles with side lengths as follows which are classified as right triangles are:',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            OptionButton(text: '2 cm, 4 cm, 6 cm', selected: false),
+            OptionButton(text: '8 cm, 6 cm, 7 cm', selected: false),
+            OptionButton(text: '9 cm, 9 cm, 9 cm', selected: true),
+            OptionButton(text: '3 cm, 4 cm, 5 cm', selected: false),
+            SizedBox(height: 16),
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.green.shade50,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('4 sec', style: TextStyle(fontSize: 16)),
-                  Icon(Icons.timer),
-                ],
-              ),
-              const SizedBox(height: 30),
-              const Text(
-                'Question 4/4',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                elevation: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        '1x1 = ?',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      const SizedBox(height: 20),
-                      OptionButton(option: '1. 5'),
-                      OptionButton(option: '2. 7'),
-                      OptionButton(option: '3. 1'),
-                      OptionButton(option: '4. 7'),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: GridView.count(
-                  crossAxisCount: 5,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  shrinkWrap: true,
-                  children: List.generate(20, (index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '${index + 1}',
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Logika untuk menangani tombol submit
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple, // Warna ungu
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                  ),
-                  child: const Text(
-                      'Submit',
-                      style: TextStyle(fontSize: 16, color: Colors.white), // Ubah warna teks menjadi putih
+                  Text(
+                    'Basic Solution',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Equilateral triangle = a triangle whose three sides are the same length. An example is triangle option C.',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CongratulationScreen()), // Navigate to NilaiView
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepPurple,
+                minimumSize: Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
-            ],
-          ),
+              ),
+              child: Text(
+                'Next',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(12, (index) {
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: index < 3 ? Colors.purple : Colors.grey.shade300,
+                    shape: BoxShape.circle,
+                  ),
+                );
+              }),
+            ),
+            SizedBox(height: 16),
+          ],
         ),
       ),
-      
     );
   }
 }
 
 class OptionButton extends StatelessWidget {
-  final String option;
+  final String text;
+  final bool selected;
 
-  OptionButton({required this.option});
+  OptionButton({required this.text, required this.selected});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 4),
       child: ElevatedButton(
+        onPressed: () {
+          // Add option button functionality
+        },
         style: ElevatedButton.styleFrom(
-          foregroundColor: const Color.fromARGB(255, 65, 62, 62),
-          backgroundColor: Colors.white,
-          minimumSize: const Size(double.infinity, 50),
+          backgroundColor: selected ? Color.fromARGB(255, 195, 170, 208) : Colors.grey.shade100,
+          foregroundColor: selected ? Colors.white : Colors.black,
+          minimumSize: Size(double.infinity, 50),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: const BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(16),
+            side: BorderSide.none, // No border shadow
           ),
+          elevation: 0, // No shadow
         ),
-        onPressed: () {},
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(option, style: const TextStyle(fontSize: 16)),
-            const Icon(Icons.radio_button_unchecked),
-          ],
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );
