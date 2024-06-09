@@ -74,28 +74,76 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                 child: ListView(
                   children: [
                     CourseCard(
-                      title: "Oral Communication",
+                      title: "Arithmetic Operations",
                       progress: 0.95,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ThirdPage(),
+                          ),
+                        );
+                      },
                     ),
                     CourseCard(
-                      title: "Listening",
+                      title: "Al - Jabr",
                       progress: 0.95,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ThirdPage(),
+                          ),
+                        );
+                      },
                     ),
                     CourseCard(
-                      title: "Reading",
+                      title: "Integers",
                       progress: 0.95,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ThirdPage(),
+                          ),
+                        );
+                      },
                     ),
                     CourseCard(
-                      title: "Writing Texts",
+                      title: "Algebraic Expressions",
                       progress: 0.95,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ThirdPage(),
+                          ),
+                        );
+                      },
                     ),
                     CourseCard(
-                      title: "Grammar",
+                      title: "Percentages",
                       progress: 0.95,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ThirdPage(),
+                          ),
+                        );
+                      },
                     ),
                     CourseCard(
-                      title: "Integrated English",
+                      title: "Algebraic Expressions",
                       progress: 0.95,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ThirdPage(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -111,52 +159,57 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
 class CourseCard extends StatelessWidget {
   final String title;
   final double progress;
+  final VoidCallback onTap;
 
   const CourseCard({
     required this.title,
     required this.progress,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white, // Set the background color to white
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        side: BorderSide(
-          color: Colors.grey.shade300, // Thin border color
-          width: 1.0, // Thin border width
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: Colors.white, // Set the background color to white
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          side: BorderSide(
+            color: Colors.grey.shade300, // Thin border color
+            width: 1.0, // Thin border width
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 24.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 69, 20, 128),
-              ),
-            ),
-            CircularPercentIndicator(
-              radius: 30.0,
-              lineWidth: 6.0,
-              percent: progress,
-              center: Text(
-                "${(progress * 100).toStringAsFixed(0)}%",
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.0,
-                  color: Colors.green,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 69, 20, 128),
                 ),
               ),
-              progressColor: Colors.green,
-              backgroundColor: Colors.grey.shade200,
-            ),
-          ],
+              CircularPercentIndicator(
+                radius: 30.0,
+                lineWidth: 6.0,
+                percent: progress,
+                center: Text(
+                  "${(progress * 100).toStringAsFixed(0)}%",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14.0,
+                    color: Colors.green,
+                  ),
+                ),
+                progressColor: Colors.green,
+                backgroundColor: Colors.grey.shade200,
+              ),
+            ],
+          ),
         ),
       ),
     );
