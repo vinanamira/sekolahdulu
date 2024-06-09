@@ -38,7 +38,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
@@ -46,10 +46,10 @@ class _QuizScreenState extends State<QuizScreen> {
             );
           },
         ),
-        title: Text(''),
-        actions: [
+        title: const Text(''),
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Text(
               'Skip',
               style: TextStyle(fontSize: 16),
@@ -68,22 +68,22 @@ class _QuizScreenState extends State<QuizScreen> {
               LinearProgressIndicator(
                 value: 0.75,
                 backgroundColor: Colors.grey[300],
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
               ),
-              SizedBox(height: 10),
-              Row(
+              const SizedBox(height: 10),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('4 sec', style: TextStyle(fontSize: 16)),
                   Icon(Icons.timer),
                 ],
               ),
-              SizedBox(height: 30),
-              Text(
+              const SizedBox(height: 30),
+              const Text(
                 'Question 4/4',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -94,11 +94,11 @@ class _QuizScreenState extends State<QuizScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         '1x1 = ?',
                         style: TextStyle(fontSize: 18),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       OptionButton(option: '1. 5'),
                       OptionButton(option: '2. 7'),
                       OptionButton(option: '3. 1'),
@@ -107,9 +107,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: GridView.count(
                   crossAxisCount: 5,
                   mainAxisSpacing: 10,
@@ -124,15 +124,15 @@ class _QuizScreenState extends State<QuizScreen> {
                       child: Center(
                         child: Text(
                           '${index + 1}',
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     );
                   }),
                 ),
               ),
-              SizedBox(height: 20),
-              Container(
+              const SizedBox(height: 20),
+              SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
@@ -140,9 +140,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple, // Warna ungu
-                    padding: EdgeInsets.symmetric(vertical: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
                   ),
-                  child: Text(
+                  child: const Text(
                       'Submit',
                       style: TextStyle(fontSize: 16, color: Colors.white), // Ubah warna teks menjadi putih
                     ),
@@ -170,18 +170,18 @@ class OptionButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           foregroundColor: const Color.fromARGB(255, 65, 62, 62),
           backgroundColor: Colors.white,
-          minimumSize: Size(double.infinity, 50),
+          minimumSize: const Size(double.infinity, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Colors.grey),
+            side: const BorderSide(color: Colors.grey),
           ),
         ),
         onPressed: () {},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(option, style: TextStyle(fontSize: 16)),
-            Icon(Icons.radio_button_unchecked),
+            Text(option, style: const TextStyle(fontSize: 16)),
+            const Icon(Icons.radio_button_unchecked),
           ],
         ),
       ),

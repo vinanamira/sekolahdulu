@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.purple),
+          icon: const Icon(Icons.arrow_back, color: Colors.purple),
           onPressed: () {
             // Handle back action
           },
@@ -41,30 +41,30 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             CircleAvatar(
               radius: 40,
               backgroundImage: NetworkImage(currentUser.profileImageUrl),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               currentUser.username,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.purple,
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             ListTile(
-              leading: Icon(Icons.logout, color: Colors.purple),
-              title: Text('Log out'),
-              trailing: Icon(Icons.arrow_forward_ios, color: Colors.purple),
+              leading: const Icon(Icons.logout, color: Colors.purple),
+              title: const Text('Log out'),
+              trailing: const Icon(Icons.arrow_forward_ios, color: Colors.purple),
               onTap: () {
                 // Handle log out action
               },
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.only(bottom: 140.0),
               child: Column(
