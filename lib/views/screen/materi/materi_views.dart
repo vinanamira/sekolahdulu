@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:assesment2/data/materi_controller.dart';
 import 'package:assesment2/data/remote/materi.dart';
 import 'package:assesment2/views/screen/materi/list_materi_views.dart';
@@ -10,7 +12,11 @@ class ThirdPage extends StatefulWidget {
   final String title;
   final int index;
 
-  const ThirdPage({super.key, required this.title, required this.index});
+  const ThirdPage({
+    super.key,
+    required this.title,
+    required this.index,
+  });
 
   @override
   State<ThirdPage> createState() => _ThirdPageState();
@@ -18,11 +24,6 @@ class ThirdPage extends StatefulWidget {
 
 class _ThirdPageState extends State<ThirdPage> {
   final MateriController _materiController = Get.find();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +95,9 @@ class _ThirdPageState extends State<ThirdPage> {
               children: [
                 FutureBuilder(
                     future: _materiController.fetchSpecificMateri(
-                        widget.index, widget.title),
+                      widget.index,
+                      widget.title,
+                    ),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         if (snapshot.connectionState ==
@@ -106,6 +109,8 @@ class _ThirdPageState extends State<ThirdPage> {
 
                         if (snapshot.connectionState == ConnectionState.done) {
                           final materi = snapshot.data as Materi;
+
+                          log('${materi.urlVideo} ${materi.judul}', name: 'youtube');
 
                           return YoutubePlayer(
                             controller: YoutubePlayerController(
@@ -133,58 +138,82 @@ class _ThirdPageState extends State<ThirdPage> {
                     color: const Color(0xFFF5F5F5),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text(
-                            'Algebra',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 4.0),
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(59, 38, 122, 1),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: const Row(
-                              children: [
-                                Text(
-                                  '15 mins',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                  child: FutureBuilder(
+                    future: _materiController.fetchSpecificMateri(
+                        widget.index, widget.title),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          final materi = snapshot.data as Materi;
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    widget.title,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w800,
+                                    ),
                                   ),
+                                  const Spacer(),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0,
+                                      vertical: 4.0,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color:
+                                          const Color.fromRGBO(59, 38, 122, 1),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          materi.durasi,
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        const Icon(
+                                          Icons.access_time,
+                                          size: 12,
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                materi.deskripsi,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromRGBO(59, 38, 122, 1),
+                                  fontWeight: FontWeight.w500,
                                 ),
-                                SizedBox(width: 4),
-                                Icon(
-                                  Icons.access_time,
-                                  size: 12,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      const Text(
-                        'Today, we have gathered here to test your mathematical prowess and witness the remarkable abilities of our talented young minds.',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color.fromRGBO(59, 38, 122, 1),
-                          fontWeight: FontWeight.w500,
-                        ),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
+                                textAlign: TextAlign.justify,
+                              ),
+                            ],
+                          );
+                        }
+                      }
+
+                      return Container();
+                    },
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -225,7 +254,7 @@ class _ThirdPageState extends State<ThirdPage> {
                                   MaterialPageRoute(
                                     builder: (context) => ThirdPage(
                                       title: filteredList[index].judul,
-                                      index: index,
+                                      index: materiList.indexWhere((e) => e.judul == filteredList[index].judul),
                                     ),
                                   ),
                                 ),
