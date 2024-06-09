@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/materi/materi_views.dart';
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 
-void main() {
-  runApp(CourseScreen());
-}
-
 class CourseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

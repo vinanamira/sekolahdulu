@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:assesment2/views/screen/materi/course_view.dart'; // Import the CourseScreen from the materi folder
+import 'package:assesment2/views/screen/explore/list_materi_views.dart';
 
 class ThirdPage extends StatefulWidget {
   const ThirdPage({super.key});
@@ -38,7 +39,10 @@ class _ThirdPageState extends State<ThirdPage> {
           icon: const Icon(Icons.keyboard_arrow_left),
           iconSize: 36,
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => LiveCoursesScreen()), 
+            );
           },
         ),
         toolbarHeight: 80,
@@ -77,7 +81,7 @@ class _ThirdPageState extends State<ThirdPage> {
                   shape: BoxShape.circle,
                 ),
                 child: Image.asset(
-                  'assets/images/profile-pict.jpg', 
+                  'assets/images/profile-pict.jpg',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -96,8 +100,7 @@ class _ThirdPageState extends State<ThirdPage> {
                 YoutubePlayer(
                   controller: _controller,
                   showVideoProgressIndicator: true,
-                  onReady: () {
-                  },
+                  onReady: () {},
                 ),
                 const SizedBox(height: 16),
                 Container(
@@ -243,7 +246,7 @@ class _ThirdPageState extends State<ThirdPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  CourseScreen(),
+                          builder: (context) => CourseScreen(),
                         ),
                       );
                     },
