@@ -18,35 +18,11 @@ class ThirdPage extends StatefulWidget {
 
 class _ThirdPageState extends State<ThirdPage> {
   final MateriController _materiController = Get.find();
-  // late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    // _controller =
-    // _initializeFirebase();
   }
-
-  // Future<void> _initializeFirebase() async {
-  //   await Firebase.initializeApp();
-  //   _databaseRef = FirebaseDatabase.instance.reference();
-  //   fetchVideoData('Algebra');
-  // }
-
-  // void fetchVideoData(String key) {
-  //   _databaseRef.child(key).once().then((DataSnapshot snapshot) {
-  //     var data = snapshot.value as Map<dynamic, dynamic>;
-  //     setState(() {
-  //       _controller.load(YoutubePlayer.convertUrlToId(data['url'])!);
-  //     });
-  //   });
-  // }
-
-  // @override
-  // void dispose() {
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
