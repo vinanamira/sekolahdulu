@@ -26,76 +26,82 @@ class _TodoListScreenState extends State<TodoListScreen> {
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: SafeArea(
-        child: ValueListenableBuilder(
-          valueListenable: _todoController.todoBox.listenable(),
-          builder: (_, box, __) {
-            log(_todoController.todoBox.toString(), name: 'todo');
+        child: Stack(
+          children: [
+            ValueListenableBuilder(
+              valueListenable: _todoController.todoBox.listenable(),
+              builder: (_, box, __) {
+                log(_todoController.todoBox.toString(), name: 'todo');
 
-            if (box.isEmpty) {
-              return const Center(
-                child: Text(
-                  'No ToDo :)',
-                  style: TextStyle(fontSize: 20),
-                ),
-              );
-            } else {
-              return GetBuilder<TodoController>(
-                builder: (context) => ListView.builder(
-                  itemCount: _todoController.todoBox.length,
-                  itemBuilder: (context, index) {
-                    var todo = _todoController.todoBox.getAt(index);
+                if (box.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'No ToDo :)',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  );
+                } else {
+                  return GetBuilder<TodoController>(
+                    builder: (context) => ListView.builder(
+                      itemCount: _todoController.todoBox.length,
+                      itemBuilder: (context, index) {
+                        var todo = _todoController.todoBox.getAt(index);
 
-                    return Card(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 8.0,
-                        horizontal: 16.0,
-                      ),
-                      child: ListTile(
-                        title: Text(
-                          todo!.title,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(
-                          'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TodoDetailScreen(
-                                todo: todo,
-                                index: index,
-                              ),
+                        return Card(
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 8.0,
+                            horizontal: 16.0,
+                          ),
+                          child: ListTile(
+                            title: Text(
+                              todo!.title,
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
-                          );
-                        },
+                            subtitle: Text(
+                              'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TodoDetailScreen(
+                                    todo: todo,
+                                    index: index,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 36.0, bottom: 135.0), // Sesuaikan nilai ini untuk posisi yang diinginkan
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AddEditTodoScreen(
+                          isEditing: false,
+                        ),
                       ),
                     );
                   },
-                ),
-              );
-            }
-          },
-        ),
-      ),
-      floatingActionButton: Positioned(
-        bottom: 240, 
-        right: 16,
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AddEditTodoScreen(
-                  isEditing: false,
+                  tooltip: 'Add Daily Task',
+                  child: const Icon(Icons.add),
                 ),
               ),
-            );
-          },
-          tooltip: 'Add Daily Task',
-          child: const Icon(Icons.add),
+            ),
+          ],
         ),
       ),
     );
