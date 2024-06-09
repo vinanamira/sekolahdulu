@@ -18,7 +18,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         flexibleSpace: Align(
           alignment: Alignment.centerRight,
           child: Padding(
-            padding: const EdgeInsets.only(right: 16.0, top: 64.0),
+            padding: const EdgeInsets.only(right: 16.0, top: 40.0),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class User {
   final String username;
-  final String profileImageUrl;
+  final String profil;
 
-  User({required this.username, required this.profileImageUrl});
+  User({required this.username, required this.profil});
 }
 
 class UserService {
   User getCurrentUser() {
-    // Simulate fetching user data from a backend or local storage
+    // Simulasi pengambilan data pengguna dari backend atau penyimpanan lokal
     return User(
       username: 'Kevin Anggara',
-      profileImageUrl: 'https://via.placeholder.com/150', // Placeholder image URL
+      profil: 'assets/images/profile-pict.jpg', // Path ke gambar profil
     );
   }
 }
@@ -30,12 +30,6 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.purple),
-          onPressed: () {
-            // Handle back action
-          },
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -45,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 16),
             CircleAvatar(
               radius: 40,
-              backgroundImage: NetworkImage(currentUser.profileImageUrl),
+              backgroundImage: AssetImage(currentUser.profil),
             ),
             const SizedBox(height: 8),
             Text(
@@ -53,14 +47,17 @@ class ProfileScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.purple,
+                color: Color.fromRGBO(59, 38, 122, 1),
               ),
             ),
             const SizedBox(height: 40),
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.purple),
               title: const Text('Log out'),
-              trailing: const Icon(Icons.arrow_forward_ios, color: Colors.purple),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                color: Color.fromRGBO(59, 38, 122, 1),
+              ),
               onTap: () {
                 // Handle log out action
               },
@@ -71,10 +68,9 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/images/profle.jpg', // Path to the logo
+                    'assets/images/profle.jpg', // Path ke logo
                     height: 300,
                   ),
-                  
                 ],
               ),
             ),
