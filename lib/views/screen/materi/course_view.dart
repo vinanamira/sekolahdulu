@@ -89,7 +89,7 @@ class QuizScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepPurple,
+                backgroundColor: Color.fromARGB(255, 46, 10, 94),
                 minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -113,7 +113,7 @@ class QuizScreen extends StatelessWidget {
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(
-                    color: index < 3 ? Colors.purple : Colors.grey.shade300,
+                    color: index < 3 ? Color.fromARGB(255, 46, 10, 94) : Colors.grey.shade300,
                     shape: BoxShape.circle,
                   ),
                 );
@@ -143,7 +143,7 @@ class OptionButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: selected
-              ? const Color.fromARGB(255, 195, 170, 208)
+              ? const Color.fromARGB(255, 46, 10, 94)
               : Colors.grey.shade100,
           foregroundColor: selected ? Colors.white : Colors.black,
           minimumSize: const Size(double.infinity, 50),

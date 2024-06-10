@@ -13,7 +13,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white,
       appBar: AppBar(
+      backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         flexibleSpace: Align(
           alignment: Alignment.centerRight,

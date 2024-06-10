@@ -328,7 +328,7 @@ class _ThirdPageState extends State<ThirdPage> {
                           color: Color.fromRGBO(184, 186, 196, 1),
                         ),
                       ),
-                      backgroundColor: const Color.fromRGBO(78, 50, 162, 1),
+                      backgroundColor: const Color.fromARGB(255, 46, 10, 94),
                     ),
                     child: const Text(
                       'Continue',

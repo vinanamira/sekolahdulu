@@ -21,10 +21,12 @@ class _TodoListScreenState extends State<TodoListScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Daily Task List'),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -32,7 +34,6 @@ class _TodoListScreenState extends State<TodoListScreen> {
               valueListenable: _todoController.todoBox.listenable(),
               builder: (_, box, __) {
                 log(_todoController.todoBox.toString(), name: 'todo');
-
                 if (box.isEmpty) {
                   return const Center(
                     child: Text(
@@ -169,6 +170,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
             Text(widget.isEditing ? 'Edit Daily Task' : 'Add New Daily Task'),
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(

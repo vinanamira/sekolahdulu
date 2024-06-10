@@ -1,3 +1,5 @@
+import 'package:assesment2/views/screen/explore/explore_views.dart';
+import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/materi/materi_views.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -25,35 +27,47 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                   IconButton(
                     icon: const Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeNavbarWidget(
+                                    isFromHome: true,
+                                  )));
                     },
                   ),
                   const Spacer(),
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Kevin Anggara',
+                        'Vina',
                         style: TextStyle(
+                          color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        '18 y.o / SMA',
+                        '17 y.o / 12th grade',
                         style: TextStyle(
-                          fontSize: 12,
                           color: Colors.grey,
+                          fontSize: 12,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(width: 8),
-                  const CircleAvatar(
-                    backgroundImage: AssetImage(
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: Image.asset(
                       'assets/images/profile-pict.jpg',
-                    ), // Replace with your profile image asset
-                    radius: 20,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ],
               ),
@@ -62,10 +76,10 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Your exercise',
+                  'Your Exercise',
                   style: TextStyle(
                     fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w800,
                     color: Color.fromARGB(255, 61, 7, 109),
                   ),
                 ),

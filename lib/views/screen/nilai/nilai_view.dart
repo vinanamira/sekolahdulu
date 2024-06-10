@@ -8,12 +8,13 @@ class CongratulationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {},
         ),
         title: const Padding(
-          padding: EdgeInsets.only(top: 20.0), // Add padding to the top
+          padding: EdgeInsets.only(top: 20.0),
           child: Row(
             children: [
               Spacer(),
@@ -154,8 +155,7 @@ class CongratulationScreen extends StatelessWidget {
                     ), // Set text color to white
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(
-                        255, 46, 10, 94), // Background color
+                    backgroundColor: const Color.fromARGB(255, 46, 10, 94), // Background color
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 20), // Button padding
                     textStyle: const TextStyle(fontSize: 16),
