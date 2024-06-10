@@ -30,7 +30,7 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HomeNavbarWidget(
+                              builder: (context) => const HomeNavbarWidget(
                                     isFromHome: true,
                                   )));
                     },

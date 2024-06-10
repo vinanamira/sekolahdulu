@@ -148,12 +148,6 @@ class CongratulationScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text(
-                    'Done',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ), // Set text color to white
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 46, 10, 94), // Background color
                     padding: const EdgeInsets.symmetric(
@@ -165,6 +159,12 @@ class CongratulationScreen extends StatelessWidget {
                       borderRadius:
                           BorderRadius.circular(20), // Rounded corners
                     ),
+                  ),
+                  child: const Text(
+                    'Done',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ), // Set text color to white
                   ),
                 ),
               ],
