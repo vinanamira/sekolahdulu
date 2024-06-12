@@ -88,7 +88,8 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                             });
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => const RegisterPageScreen(),
+                                builder: (context) =>
+                                    const RegisterPageScreen(),
                               ),
                             );
                           },
@@ -252,56 +253,23 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                                     .signInWithEmailAndPassword(
                                   email: _emailAddressController.text,
                                   password: _passwordController.text,
-                                ).then((value) {
+                                )
+                                    .then((value) {
                                   log(value.user!.uid, name: 'User UID');
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const HomeNavbarWidget(),
+                                    ),
+                                  );
                                 }, onError: (value) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('Login failed! ${value.message}'),
+                                      content: Text(
+                                          'Login failed! ${value.message}'),
                                     ),
                                   );
                                 });
-
-                                if (FirebaseAuth.instance.currentUser != null) {
-                                  final user =
-                                      FirebaseAuth.instance.currentUser;
-
-                                  // Inisialisasi username
-                                  final username = user!.email!.substring(
-                                    0,
-                                    user.email!.indexOf('@'),
-                                  );
-
-                                  // Cek database untuk user yang sekarang
-                                  // ====== GET ======
-                                  final snapshot = await ref
-                                      .child('users/${user.uid}')
-                                      .get();
-
-                                  // Cek kalau usernya ada, gausah dibuat lagi
-                                  // tapi diupdate pake data baru
-                                  if (snapshot.exists) {
-                                    // ====== UPDATE ======
-                                    await ref.child(user.uid).update({
-                                      'username': username,
-                                      'fullname': username,
-                                      'email': user.email,
-                                    });
-                                  } else {
-                                    // ====== CREATE ======
-                                    await ref.child(user.uid).set({
-                                      'username': username,
-                                      'fullname': username,
-                                      'email': user.email,
-                                    });
-                                  }
-                                }
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const HomeNavbarWidget(),
-                                  ),
-                                );
                               }
                             },
                             style: ElevatedButton.styleFrom(

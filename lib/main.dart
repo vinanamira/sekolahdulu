@@ -4,6 +4,8 @@ import 'package:assesment2/data/materi_controller.dart';
 import 'package:assesment2/data/todo_controller.dart';
 import 'package:assesment2/firebase_options.dart';
 import 'package:assesment2/views/screen/auth/login_views.dart';
+import 'package:assesment2/views/widgets/home_navbar_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         useMaterial3: true,
       ),
-      home: const LoginPageScreen(),
+      home: FirebaseAuth.instance.currentUser != null ? HomeNavbarWidget() : LoginPageScreen(),
     );
   }
 }
