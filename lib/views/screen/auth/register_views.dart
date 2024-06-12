@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
 import 'package:assesment2/views/screen/auth/login_views.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPageScreen extends StatefulWidget {
@@ -12,6 +14,8 @@ class RegisterPageScreen extends StatefulWidget {
 }
 
 class _RegisterPageScreenState extends State<RegisterPageScreen> {
+  DatabaseReference ref = FirebaseDatabase.instance.ref('users');
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailAddressController = TextEditingController();
@@ -295,15 +299,46 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                         const SizedBox(height: 24),
                         Center(
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                log('User registered');
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const HomeNavbarWidget(),
-                                  ),
-                                );
+                                await FirebaseAuth.instance
+                                    // ==== UBAH INI JADI CREATE USER ====
+                                    .signInWithEmailAndPassword(
+                                  email: _emailAddressController.text,
+                                  password: _passwordController.text,
+                                )
+                                    .then((value) {
+                                  log(value.user!.uid, name: 'User UID');
+
+                                  // ====== CREATE ======
+                                  final username = value.user!.email!.substring(
+                                    0,
+                                    value.user!.email!.indexOf('@'),
+                                  );
+
+                                  ref.child(value.user!.uid).set({
+                                    'username': username,
+                                    'fullname': username,
+                                    'email': value.user!.email,
+                                    'age': _ageController.text,
+                                    'grade': _gradeController.text,
+                                  });
+
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const HomeNavbarWidget(),
+                                    ),
+                                  );
+                                }, onError: (value) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Register failed! ${value.message}',
+                                      ),
+                                    ),
+                                  );
+                                });
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -323,7 +358,6 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
-                              
                             ),
                           ),
                         ),
