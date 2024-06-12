@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:assesment2/views/screen/auth/login_views.dart';
 
 class User {
   final String username;
@@ -58,7 +59,11 @@ class ProfileScreen extends StatelessWidget {
                 color: Color.fromRGBO(59, 38, 122, 1),
               ),
               onTap: () {
-                // Handle log out action
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const LoginPageScreen(),
+                  ),
+                );
               },
             ),
             const Spacer(),

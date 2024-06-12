@@ -1,24 +1,25 @@
 import 'dart:developer';
 
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:assesment2/views/screen/auth/login_views.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPageScreen extends StatefulWidget {
   const RegisterPageScreen({super.key});
 
   @override
-  State<RegisterPageScreen> createState() => _LoginPageScreenState();
+  State<RegisterPageScreen> createState() => _RegisterPageScreenState();
 }
 
-class _LoginPageScreenState extends State<RegisterPageScreen> {
-  DatabaseReference ref = FirebaseDatabase.instance.ref('users');
-
+class _RegisterPageScreenState extends State<RegisterPageScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailAddressController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _gradeController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+
+  bool isSignUpSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class _LoginPageScreenState extends State<RegisterPageScreen> {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Container(
+          height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -35,7 +37,8 @@ class _LoginPageScreenState extends State<RegisterPageScreen> {
           ),
           child: SingleChildScrollView(
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+              top: MediaQuery.of(context).viewInsets.top + 100,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 100,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +49,7 @@ class _LoginPageScreenState extends State<RegisterPageScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Let\'s join with us',
+                        'Fill your data',
                         style: TextStyle(
                           color: Color.fromRGBO(59, 38, 122, 1),
                           fontSize: 28,
@@ -67,7 +70,87 @@ class _LoginPageScreenState extends State<RegisterPageScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 36),
+                const SizedBox(height: 16),
+                Center(
+                  child: Container(
+                    width: 300,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isSignUpSelected = true;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: isSignUpSelected
+                                  ? const Color.fromRGBO(59, 38, 122, 1)
+                                  : Colors.white,
+                              borderRadius: isSignUpSelected
+                                  ? const BorderRadius.horizontal(
+                                      left: Radius.circular(24.0),
+                                    )
+                                  : BorderRadius.circular(24.0),
+                            ),
+                            alignment: Alignment.center,
+                            width: 150, // Adjust the width as needed
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                color: isSignUpSelected
+                                    ? Colors.white
+                                    : const Color.fromRGBO(59, 38, 122, 1),
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isSignUpSelected = false;
+                            });
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const LoginPageScreen(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: !isSignUpSelected
+                                  ? const Color.fromRGBO(59, 38, 122, 1)
+                                  : Colors.white,
+                              borderRadius: !isSignUpSelected
+                                  ? const BorderRadius.horizontal(
+                                      right: Radius.circular(24.0),
+                                    )
+                                  : BorderRadius.circular(24.0),
+                            ),
+                            alignment: Alignment.center,
+                            width: 150, // Adjust the width as needed
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                color: !isSignUpSelected
+                                    ? Colors.white
+                                    : const Color.fromRGBO(59, 38, 122, 1),
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16), // Space before form
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Form(
@@ -75,6 +158,74 @@ class _LoginPageScreenState extends State<RegisterPageScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const Text(
+                          'Grade',
+                          style: TextStyle(
+                            color: Color.fromRGBO(59, 38, 122, 1),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _gradeController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your grade';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Enter your Grade',
+                            hintStyle: const TextStyle(
+                              color: Color.fromRGBO(202, 203, 210, 1),
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey.shade100,
+                          ),
+                          obscureText: true,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Age',
+                          style: TextStyle(
+                            color: Color.fromRGBO(59, 38, 122, 1),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _ageController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your age';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Enter your age',
+                            hintStyle: const TextStyle(
+                              color: Color.fromRGBO(202, 203, 210, 1),
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey.shade100,
+                          ),
+                          obscureText: true,
+                        ),
+                        const SizedBox(height: 16),
                         const Text(
                           'Email Address',
                           style: TextStyle(
@@ -141,72 +292,12 @@ class _LoginPageScreenState extends State<RegisterPageScreen> {
                           ),
                           obscureText: true,
                         ),
-                        const SizedBox(height: 16),
-                        GestureDetector(
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  'SORRY, THIS FEATURE IS UNDER DEVELOPMENT 👋',
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 24),
                         Center(
                           child: ElevatedButton(
-                            onPressed: () async {
+                            onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                await FirebaseAuth.instance
-                                    .signInWithEmailAndPassword(
-                                  email: _emailAddressController.text,
-                                  password: _passwordController.text,
-                                ).then((value) {
-                                  log(value.user!.uid, name: 'User UID');
-                                }, onError: (value) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Login failed! ${value.message}'),
-                                    ),
-                                  );
-                                });
-
-                                if (FirebaseAuth.instance.currentUser != null) {
-                                  final user =
-                                      FirebaseAuth.instance.currentUser;
-
-                                  // Inisialisasi username
-                                  final username = user!.email!.substring(
-                                    0,
-                                    user.email!.indexOf('@'),
-                                  );
-
-                                  // Cek database untuk user yang sekarang
-                                  // ====== GET ======
-                                  final snapshot = await ref
-                                      .child('users/${user.uid}')
-                                      .get();
-
-                                  // Cek kalau usernya ada, gausah dibuat lagi
-                                  // tapi diupdate pake data baru
-                                  if (snapshot.exists) {
-                                    // ====== UPDATE ======
-                                    await ref.child(user.uid).update({
-                                      'username': username,
-                                      'fullname': username,
-                                      'email': user.email,
-                                    });
-                                  } else {
-                                    // ====== CREATE ======
-                                    await ref.child(user.uid).set({
-                                      'username': username,
-                                      'fullname': username,
-                                      'email': user.email,
-                                    });
-                                  }
-                                }
-
+                                log('User registered');
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                     builder: (context) =>
@@ -222,16 +313,17 @@ class _LoginPageScreenState extends State<RegisterPageScreen> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 145,
+                                horizontal: 140,
                                 vertical: 12,
                               ),
                             ),
                             child: const Text(
-                              'Sign In',
+                              'Sign Up',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
+                              
                             ),
                           ),
                         ),

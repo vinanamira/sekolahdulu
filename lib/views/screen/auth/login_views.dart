@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:assesment2/views/widgets/home_navbar_widget.dart';
+import 'package:assesment2/views/screen/auth/register_views.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,8 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
 
   final TextEditingController _emailAddressController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  bool isSignUpSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +70,87 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 36),
+                const SizedBox(height: 16),
+                Center(
+                  child: Container(
+                    width: 300,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(59, 38, 122, 1),
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isSignUpSelected = true;
+                            });
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const RegisterPageScreen(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: isSignUpSelected
+                                  ? const Color.fromRGBO(59, 38, 122, 1)
+                                  : Colors.white,
+                              borderRadius: isSignUpSelected
+                                  ? BorderRadius.circular(24.0)
+                                  : const BorderRadius.horizontal(
+                                      left: Radius.circular(24.0),
+                                    ),
+                            ),
+                            alignment: Alignment.center,
+                            width: 150, // Adjust the width as needed
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                color: isSignUpSelected
+                                    ? Colors.white
+                                    : const Color.fromRGBO(59, 38, 122, 1),
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isSignUpSelected = false;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: !isSignUpSelected
+                                  ? const Color.fromRGBO(59, 38, 122, 1)
+                                  : Colors.white,
+                              borderRadius: !isSignUpSelected
+                                  ? BorderRadius.circular(24.0)
+                                  : const BorderRadius.horizontal(
+                                      right: Radius.circular(24.0),
+                                    ),
+                            ),
+                            alignment: Alignment.center,
+                            width: 150, // Adjust the width as needed
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                color: !isSignUpSelected
+                                    ? Colors.white
+                                    : const Color.fromRGBO(59, 38, 122, 1),
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16), // Space before form
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Form(
@@ -213,7 +296,6 @@ class _LoginPageScreenState extends State<LoginPageScreen> {
                                     });
                                   }
                                 }
-
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                     builder: (context) =>
