@@ -28,12 +28,8 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User currentUser = userService.getCurrentUser();
-<<<<<<< HEAD
-    
-=======
     final user = FirebaseAuth.instance.currentUser;
 
->>>>>>> ee2082927a846efa458d7fb581e5f1a142e4d595
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
