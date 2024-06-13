@@ -26,6 +26,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User currentUser = userService.getCurrentUser();
+    
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
