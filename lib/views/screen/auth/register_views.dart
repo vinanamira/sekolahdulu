@@ -193,7 +193,6 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                             filled: true,
                             fillColor: Colors.grey.shade100,
                           ),
-                          obscureText: true,
                         ),
                         const SizedBox(height: 16),
                         const Text(
@@ -227,7 +226,6 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                             filled: true,
                             fillColor: Colors.grey.shade100,
                           ),
-                          obscureText: true,
                         ),
                         const SizedBox(height: 16),
                         const Text(
@@ -303,7 +301,7 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                               if (_formKey.currentState!.validate()) {
                                 await FirebaseAuth.instance
                                     // ==== UBAH INI JADI CREATE USER ====
-                                    .signInWithEmailAndPassword(
+                                    .createUserWithEmailAndPassword(
                                   email: _emailAddressController.text,
                                   password: _passwordController.text,
                                 )
@@ -324,12 +322,27 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                                     'grade': _gradeController.text,
                                   });
 
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomeNavbarWidget(),
-                                    ),
-                                  );
+                                  FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                    email: _emailAddressController.text,
+                                    password: _passwordController.text,
+                                  )
+                                      .then((value) {
+                                    log(value.user!.uid, name: 'User UID');
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeNavbarWidget(),
+                                      ),
+                                    );
+                                  }, onError: (value) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                            'Login failed! ${value.message}'),
+                                      ),
+                                    );
+                                  });
                                 }, onError: (value) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(

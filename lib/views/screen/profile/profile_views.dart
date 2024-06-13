@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:assesment2/views/screen/auth/login_views.dart';
 
@@ -26,7 +28,12 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User currentUser = userService.getCurrentUser();
+<<<<<<< HEAD
     
+=======
+    final user = FirebaseAuth.instance.currentUser;
+
+>>>>>>> ee2082927a846efa458d7fb581e5f1a142e4d595
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
@@ -59,12 +66,15 @@ class ProfileScreen extends StatelessWidget {
                 Icons.arrow_forward_ios,
                 color: Color.fromRGBO(59, 38, 122, 1),
               ),
-              onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => const LoginPageScreen(),
-                  ),
-                );
+              onTap: () async {
+                if (user != null) {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPageScreen(),
+                    ),
+                  );
+                }
               },
             ),
             const Spacer(),
