@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(
                                 color: Color.fromRGBO(209, 195, 251, 1),
                                 fontWeight: FontWeight.w800,
-                                fontSize: 28,
+                                fontSize: 32,
                               ),
                             ),
                             TextSpan(
@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 28,
+                                fontSize: 32,
                               ),
                             ),
                             TextSpan(
@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(
                                 color: Color.fromRGBO(209, 195, 251, 1),
                                 fontWeight: FontWeight.w800,
-                                fontSize: 28,
+                                fontSize: 32,
                               ),
                             ),
                             TextSpan(
@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 28,
+                                fontSize: 32,
                               ),
                             ),
                           ],
