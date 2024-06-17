@@ -110,21 +110,27 @@ class _ThirdPageState extends State<ThirdPage> {
                         if (snapshot.connectionState == ConnectionState.done) {
                           final materi = snapshot.data as Materi;
 
-                          log('${materi.urlVideo} ${materi.judul}', name: 'youtube');
+                          log('${materi.urlVideo} ${materi.judul}',
+                              name: 'youtube');
 
-                          return YoutubePlayer(
-                            controller: YoutubePlayerController(
-                              initialVideoId: materi.urlVideo.substring(
-                                materi.urlVideo.lastIndexOf('/'),
-                                materi.urlVideo.length,
-                              ), // ID video YouTube dari link Anda
-                              flags: const YoutubePlayerFlags(
-                                autoPlay: false,
-                                mute: false,
+                          return YoutubePlayerBuilder(
+                            player: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: materi.urlVideo.substring(
+                                  materi.urlVideo.lastIndexOf('/'),
+                                  materi.urlVideo.length,
+                                ),
+                                flags: const YoutubePlayerFlags(
+                                  autoPlay: false,
+                                  mute: false,
+                                ),
                               ),
+                              showVideoProgressIndicator: true,
+                              onReady: () {},
                             ),
-                            showVideoProgressIndicator: true,
-                            onReady: () {},
+                            builder: (context, player) {
+                              return player;
+                            },
                           );
                         }
                       }
@@ -254,7 +260,8 @@ class _ThirdPageState extends State<ThirdPage> {
                                   MaterialPageRoute(
                                     builder: (context) => ThirdPage(
                                       title: filteredList[index].judul,
-                                      index: materiList.indexWhere((e) => e.judul == filteredList[index].judul),
+                                      index: materiList.indexWhere((e) =>
+                                          e.judul == filteredList[index].judul),
                                     ),
                                   ),
                                 ),
