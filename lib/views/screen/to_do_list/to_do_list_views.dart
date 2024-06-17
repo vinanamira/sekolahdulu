@@ -42,11 +42,15 @@ class _TodoListScreenState extends State<TodoListScreen> {
                     ),
                   );
                 } else {
+                  // Sorting todoBox based on dueDate
+                  var sortedTodos = _todoController.todoBox.values.toList()
+                    ..sort((a, b) => a.dueDate.compareTo(b.dueDate));
+                  
                   return GetBuilder<TodoController>(
                     builder: (context) => ListView.builder(
-                      itemCount: _todoController.todoBox.length,
+                      itemCount: sortedTodos.length,
                       itemBuilder: (context, index) {
-                        var todo = _todoController.todoBox.getAt(index);
+                        var todo = sortedTodos[index];
 
                         return Card(
                           margin: const EdgeInsets.symmetric(
@@ -55,7 +59,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                           ),
                           child: ListTile(
                             title: Text(
-                              todo!.title,
+                              todo.title,
                               style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(
@@ -108,6 +112,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
     );
   }
 }
+
 
 class AddEditTodoScreen extends StatefulWidget {
   final bool isEditing;

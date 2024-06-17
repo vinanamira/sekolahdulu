@@ -21,6 +21,7 @@ class UserService {
 
 class ProfileScreen extends StatelessWidget {
   final UserService userService = UserService();
+  
 
   ProfileScreen({super.key});
 
@@ -32,59 +33,62 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           automaticallyImplyLeading: false),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 16),
-            CircleAvatar(
-              radius: 40,
-              backgroundImage: AssetImage(currentUser.profil),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              currentUser.username,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+      body: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 16),
+              CircleAvatar(
+                radius: 40,
+                backgroundImage: AssetImage(currentUser.profil),
               ),
-            ),
-            const SizedBox(height: 40),
-            ListTile(
-              leading: const Icon(Icons.logout,
-                  color: Color.fromRGBO(59, 38, 122, 1)),
-              title: const Text('Log out'),
-              trailing: const Icon(
-                Icons.arrow_forward_ios,
-                color: Color.fromRGBO(59, 38, 122, 1),
+              const SizedBox(height: 8),
+              Text(
+                currentUser.username,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              onTap: () async {
-                if (user != null) {
-                  await FirebaseAuth.instance.signOut();
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPageScreen(),
+              const SizedBox(height: 40),
+              ListTile(
+                leading: const Icon(Icons.logout,
+                    color: Color.fromRGBO(59, 38, 122, 1)),
+                title: const Text('Log out'),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Color.fromRGBO(59, 38, 122, 1),
+                ),
+                onTap: () async {
+                  if (user != null) {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPageScreen(),
+                      ),
+                    );
+                  }
+                },
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 140.0),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/profle.jpg', // Path ke logo
+                      height: 300,
                     ),
-                  );
-                }
-              },
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 140.0),
-              child: Column(
-                children: [
-                  Image.asset(
-                    'assets/images/profle.jpg', // Path ke logo
-                    height: 300,
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
