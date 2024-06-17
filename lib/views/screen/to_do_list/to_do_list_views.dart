@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:assesment2/data/local/model/todo.dart';
-import 'package:assesment2/data/todo_controller.dart';
+import 'package:sekolahdulu/data/local/model/todo.dart';
+import 'package:sekolahdulu/data/todo_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';

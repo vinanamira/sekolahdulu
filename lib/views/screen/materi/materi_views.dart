@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:assesment2/data/materi_controller.dart';
-import 'package:assesment2/data/remote/materi.dart';
-import 'package:assesment2/views/screen/materi/list_materi_views.dart';
+import 'package:sekolahdulu/data/materi_controller.dart';
+import 'package:sekolahdulu/data/remote/materi.dart';
+import 'package:sekolahdulu/views/screen/materi/list_materi_views.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:assesment2/views/screen/materi/course_view.dart';
+import 'package:sekolahdulu/views/screen/materi/course_view.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart'; // Import the CourseScreen from the materi folder
 
 class ThirdPage extends StatefulWidget {

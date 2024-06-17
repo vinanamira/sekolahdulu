@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
-import 'package:assesment2/views/screen/auth/register_views.dart';
+import 'package:sekolahdulu/views/widgets/home_navbar_widget.dart';
+import 'package:sekolahdulu/views/screen/auth/register_views.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';

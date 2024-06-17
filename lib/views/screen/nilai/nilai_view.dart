@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
+import 'package:sekolahdulu/views/widgets/home_navbar_widget.dart';
 
 class CongratulationScreen extends StatelessWidget {
   const CongratulationScreen({super.key});

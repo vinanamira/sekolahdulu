@@ -1,4 +1,4 @@
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
+import 'package:sekolahdulu/views/widgets/home_navbar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -129,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: 'Sekolahdulu',
+                          text: 'sekolahdulu',
                           style: TextStyle(
                             fontSize: 12,
                             color: Color.fromRGBO(78, 50, 162, 1),

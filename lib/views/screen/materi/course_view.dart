@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/screen/nilai/nilai_view.dart'; // Pastikan Anda mengimpor file nilai_view.dart
+import 'package:sekolahdulu/views/screen/nilai/nilai_view.dart'; // Pastikan Anda mengimpor file nilai_view.dart
 
 class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key});

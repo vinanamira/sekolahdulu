@@ -1,7 +1,7 @@
-import 'package:assesment2/views/screen/explore/explore_views.dart';
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
+import 'package:sekolahdulu/views/screen/explore/explore_views.dart';
+import 'package:sekolahdulu/views/widgets/home_navbar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/screen/materi/materi_views.dart';
+import 'package:sekolahdulu/views/screen/materi/materi_views.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class LiveCoursesScreen extends StatefulWidget {

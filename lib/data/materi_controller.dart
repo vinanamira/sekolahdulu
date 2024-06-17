@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:assesment2/data/remote/materi.dart';
+import 'package:sekolahdulu/data/remote/materi.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 

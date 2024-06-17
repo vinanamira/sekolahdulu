@@ -1,7 +1,7 @@
-import 'package:assesment2/views/screen/beranda/beranda_views.dart';
-import 'package:assesment2/views/screen/to_do_list/to_do_list_views.dart';
-import 'package:assesment2/views/screen/explore/explore_views.dart';
-import 'package:assesment2/views/screen/profile/profile_views.dart';
+import 'package:sekolahdulu/views/screen/beranda/beranda_views.dart';
+import 'package:sekolahdulu/views/screen/to_do_list/to_do_list_views.dart';
+import 'package:sekolahdulu/views/screen/explore/explore_views.dart';
+import 'package:sekolahdulu/views/screen/profile/profile_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 

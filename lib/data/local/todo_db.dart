@@ -1,4 +1,4 @@
-import 'package:assesment2/data/local/model/todo.dart';
+import 'package:sekolahdulu/data/local/model/todo.dart';
 import 'package:hive/hive.dart';
 
 class TodoDB {

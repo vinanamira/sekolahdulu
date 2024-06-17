@@ -1,10 +1,10 @@
-import 'package:assesment2/data/local/todo_db.dart';
-import 'package:assesment2/data/local/model/todo.dart';
-import 'package:assesment2/data/materi_controller.dart';
-import 'package:assesment2/data/todo_controller.dart';
-import 'package:assesment2/firebase_options.dart';
-import 'package:assesment2/views/screen/auth/login_views.dart';
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
+import 'package:sekolahdulu/data/local/todo_db.dart';
+import 'package:sekolahdulu/data/local/model/todo.dart';
+import 'package:sekolahdulu/data/materi_controller.dart';
+import 'package:sekolahdulu/data/todo_controller.dart';
+import 'package:sekolahdulu/firebase_options.dart';
+import 'package:sekolahdulu/views/screen/auth/login_views.dart';
+import 'package:sekolahdulu/views/widgets/home_navbar_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

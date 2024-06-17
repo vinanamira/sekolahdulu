@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/screen/materi/list_materi_views.dart';
+import 'package:sekolahdulu/views/screen/materi/list_materi_views.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});

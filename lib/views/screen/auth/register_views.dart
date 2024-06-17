@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:assesment2/views/widgets/home_navbar_widget.dart';
-import 'package:assesment2/views/screen/auth/login_views.dart';
+import 'package:sekolahdulu/views/widgets/home_navbar_widget.dart';
+import 'package:sekolahdulu/views/screen/auth/login_views.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -337,7 +337,7 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                                       ),
                                     );
                                   }, onError: (value) {
-                                    log('${value}', name: 'login-on-regist');
+                                    log('$value', name: 'login-on-regist');
 
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
@@ -348,7 +348,7 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                                     );
                                   });
                                 }, onError: (value) {
-                                  log('${value}', name: 'register');
+                                  log('$value', name: 'register');
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:assesment2/views/screen/auth/login_views.dart';
+import 'package:sekolahdulu/views/screen/auth/login_views.dart';
 
 class User {
   final String username;
