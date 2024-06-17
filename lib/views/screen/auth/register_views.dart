@@ -329,6 +329,7 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                                   )
                                       .then((value) {
                                     log(value.user!.uid, name: 'User UID');
+
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
@@ -336,14 +337,19 @@ class _RegisterPageScreenState extends State<RegisterPageScreen> {
                                       ),
                                     );
                                   }, onError: (value) {
+                                    log('${value}', name: 'login-on-regist');
+
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                            'Login failed! ${value.message}'),
+                                          'Login failed! ${value.message}',
+                                        ),
                                       ),
                                     );
                                   });
                                 }, onError: (value) {
+                                  log('${value}', name: 'register');
+
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
