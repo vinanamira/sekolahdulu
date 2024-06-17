@@ -263,7 +263,7 @@ class TodoDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TodoController _todoController = Get.find();
+    final TodoController todoController = Get.find();
 
     return Scaffold(
       appBar: AppBar(
@@ -312,7 +312,7 @@ class TodoDetailScreen extends StatelessWidget {
                 const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
-                    _todoController.deleteTodo(index);
+                    todoController.deleteTodo(index);
                     Navigator.pop(context);
                   },
                   child: const Text('Delete'),

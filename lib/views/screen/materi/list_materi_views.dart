@@ -28,11 +28,13 @@ class _LiveCoursesScreenState extends State<LiveCoursesScreen> {
                     icon: const Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeNavbarWidget(
-                                    isFromHome: true,
-                                  )));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeNavbarWidget(
+                            isFromHome: true,
+                          ),
+                        ),
+                      );
                     },
                   ),
                   const Spacer(),
@@ -196,6 +198,7 @@ class CourseCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const CourseCard({
+    super.key,
     required this.title,
     required this.progress,
     required this.onTap,

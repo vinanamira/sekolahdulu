@@ -47,10 +47,10 @@ class QuizScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            OptionButton(text: '2 cm, 4 cm, 6 cm', selected: false),
-            OptionButton(text: '8 cm, 6 cm, 7 cm', selected: false),
-            OptionButton(text: '9 cm, 9 cm, 9 cm', selected: true),
-            OptionButton(text: '3 cm, 4 cm, 5 cm', selected: false),
+            const OptionButton(text: '2 cm, 4 cm, 6 cm', selected: false),
+            const OptionButton(text: '8 cm, 6 cm, 7 cm', selected: false),
+            const OptionButton(text: '9 cm, 9 cm, 9 cm', selected: true),
+            const OptionButton(text: '3 cm, 4 cm, 5 cm', selected: false),
             const SizedBox(height: 16),
             Container(
               padding: const EdgeInsets.all(16),
@@ -131,7 +131,7 @@ class OptionButton extends StatelessWidget {
   final String text;
   final bool selected;
 
-  OptionButton({required this.text, required this.selected});
+  const OptionButton({super.key, required this.text, required this.selected});
 
   @override
   Widget build(BuildContext context) {

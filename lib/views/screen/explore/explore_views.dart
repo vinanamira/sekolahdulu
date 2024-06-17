@@ -205,7 +205,7 @@ class CourseCard extends StatelessWidget {
   final String viewers;
   final VoidCallback onTap;
 
-  const CourseCard({
+  const CourseCard({super.key, 
     required this.imageUrl,
     required this.title,
     required this.viewers,
