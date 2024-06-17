@@ -72,7 +72,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+            padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
               child: Text(
                 'Daily Task List',
                 style: TextStyle(
@@ -81,6 +81,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                 ),
               ),
             ),
+            const SizedBox(height: 16),
             Expanded(
               child: Stack(
                 children: [
