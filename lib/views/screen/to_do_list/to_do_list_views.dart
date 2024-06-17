@@ -20,90 +20,152 @@ class _TodoListScreenState extends State<TodoListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Daily Task List'),
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      ),
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            ValueListenableBuilder(
-              valueListenable: _todoController.todoBox.listenable(),
-              builder: (_, box, __) {
-                log(_todoController.todoBox.toString(), name: 'todo');
-                if (box.isEmpty) {
-                  return const Center(
-                    child: Text(
-                      'No ToDo :)',
-                      style: TextStyle(fontSize: 20),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        flexibleSpace: Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 16.0, top: 40.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Vina',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                  );
-                } else {
-                  // Sorting todoBox based on dueDate
-                  var sortedTodos = _todoController.todoBox.values.toList()
-                    ..sort((a, b) => a.dueDate.compareTo(b.dueDate));
-                  
-                  return GetBuilder<TodoController>(
-                    builder: (context) => ListView.builder(
-                      itemCount: sortedTodos.length,
-                      itemBuilder: (context, index) {
-                        var todo = sortedTodos[index];
-
-                        return Card(
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 8.0,
-                            horizontal: 16.0,
+                    Text(
+                      '17 y.o / 12th Grade',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    'assets/images/profile-pict.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+              child: Text(
+                'Daily Task List',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Stack(
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: _todoController.todoBox.listenable(),
+                    builder: (_, box, __) {
+                      log(_todoController.todoBox.toString(), name: 'todo');
+                      if (box.isEmpty) {
+                        return const Center(
+                          child: Text(
+                            'No Task :)',
+                            style: TextStyle(fontSize: 20),
                           ),
-                          child: ListTile(
-                            title: Text(
-                              todo.title,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
-                              style: TextStyle(color: Colors.grey[600]),
-                            ),
-                            trailing: const Icon(Icons.arrow_forward_ios),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TodoDetailScreen(
-                                    todo: todo,
-                                    index: index,
+                        );
+                      } else {
+                        // Sorting todoBox based on dueDate
+                        var sortedTodos = _todoController.todoBox.values.toList()
+                          ..sort((a, b) => a.dueDate.compareTo(b.dueDate));
+
+                        return GetBuilder<TodoController>(
+                          builder: (context) => ListView.builder(
+                            itemCount: sortedTodos.length,
+                            itemBuilder: (context, index) {
+                              var todo = sortedTodos[index];
+
+                              return Card(
+                                margin: const EdgeInsets.symmetric(
+                                  vertical: 8.0,
+                                  horizontal: 16.0,
+                                ),
+                                child: ListTile(
+                                  title: Text(
+                                    todo.title,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
                                   ),
+                                  subtitle: Text(
+                                    'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
+                                    style: TextStyle(color: Colors.grey[600]),
+                                  ),
+                                  trailing: const Icon(Icons.arrow_forward_ios),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            TodoDetailScreen(
+                                          todo: todo,
+                                          index: index,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               );
                             },
                           ),
                         );
-                      },
-                    ),
-                  );
-                }
-              },
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 36.0, bottom: 135.0), // Sesuaikan nilai ini untuk posisi yang diinginkan
-                child: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AddEditTodoScreen(
-                          isEditing: false,
-                        ),
+                      }
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 36.0,
+                          bottom:
+                              135.0), // Sesuaikan nilai ini untuk posisi yang diinginkan
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AddEditTodoScreen(
+                                isEditing: false,
+                              ),
+                            ),
+                          );
+                        },
+                        tooltip: 'Add Daily Task',
+                        child: const Icon(Icons.add),
                       ),
-                    );
-                  },
-                  tooltip: 'Add Daily Task',
-                  child: const Icon(Icons.add),
-                ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -112,7 +174,6 @@ class _TodoListScreenState extends State<TodoListScreen> {
     );
   }
 }
-
 
 class AddEditTodoScreen extends StatefulWidget {
   final bool isEditing;
@@ -187,8 +248,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
             ),
             const SizedBox(height: 20),
             TextField(
-              decoration:
-                  const InputDecoration(labelText: 'Daily Task Description'),
+              decoration: const InputDecoration(labelText: 'Daily Task Description'),
               controller: _descriptionController,
             ),
             const SizedBox(height: 20),
@@ -211,8 +271,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (_titleController.text.isEmpty ||
-                    _descriptionController.text.isEmpty) {
+                if (_titleController.text.isEmpty || _descriptionController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('All fields are required'),
