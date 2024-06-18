@@ -107,7 +107,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                             itemCount: sortedTodos.length,
                             itemBuilder: (context, index) {
                               var todo = sortedTodos[index];
-                              bool isDue = todo.dueDate.isBefore(DateTime.now().add(Duration(days: 1)));
+                              bool isDue = todo.dueDate.isBefore(DateTime.now().add(const Duration(days: 1)));
 
                               return Card(
                                 color: const Color.fromARGB(255, 243, 233, 248),
@@ -135,10 +135,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                     ),
                                   ),
                                   trailing: isDue
-                                      ? Icon(Icons.notification_important, color: Colors.red)
+                                      ? const Icon(Icons.notification_important, color: Colors.red)
                                       : todo.isCompleted
-                                          ? Icon(Icons.check_circle, color: Colors.green)
-                                          : Icon(Icons.arrow_forward_ios),
+                                          ? const Icon(Icons.check_circle, color: Colors.green)
+                                          : const Icon(Icons.arrow_forward_ios),
                                   onTap: () {
                                     Navigator.push(
                                       context,
