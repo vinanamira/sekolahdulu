@@ -107,7 +107,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                             itemCount: sortedTodos.length,
                             itemBuilder: (context, index) {
                               var todo = sortedTodos[index];
-                              bool isDue = todo.dueDate.isBefore(DateTime.now().add(Duration(days: 1)));
+                              bool isDue = todo.dueDate.isBefore(DateTime.now().add(const Duration(days: 1)));
 
                               return Card(
                                 color: const Color.fromARGB(255, 243, 233, 248),
@@ -135,10 +135,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                     ),
                                   ),
                                   trailing: isDue
-                                      ? Icon(Icons.notification_important, color: Colors.red)
+                                      ? const Icon(Icons.notification_important, color: Colors.red)
                                       : todo.isCompleted
-                                          ? Icon(Icons.check_circle, color: Colors.green)
-                                          : Icon(Icons.arrow_forward_ios),
+                                          ? const Icon(Icons.check_circle, color: Colors.green)
+                                          : const Icon(Icons.arrow_forward_ios),
                                   onTap: () {
                                     Navigator.push(
                                       context,
@@ -159,8 +159,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                     },
                   ),
                   Padding(
-                    padding:
-                      const EdgeInsets.only(right: 36.0, bottom: 135.0),
+                    padding: const EdgeInsets.only(right: 36.0, bottom: 135.0),
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: FloatingActionButton(
@@ -227,6 +226,17 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
     isCompleted = false; // Default value for new task
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.isEditing && widget.todo != null) {
+      _titleController.text = widget.todo!.title;
+      _descriptionController.text = widget.todo!.description;
+      selectedDate = widget.todo!.dueDate;
+      isCompleted = widget.todo!.isCompleted;
+    }
+  }
+
   void presentDatePicker(BuildContext context) {
     showDatePicker(
       context: context,
@@ -242,14 +252,14 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    if (widget.isEditing && widget.todo != null) {
-      _titleController.text = widget.todo!.title;
-      _descriptionController.text = widget.todo!.description;
-      selectedDate = widget.todo!.dueDate;
-      isCompleted = widget.todo!.isCompleted;
-    }
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title:
