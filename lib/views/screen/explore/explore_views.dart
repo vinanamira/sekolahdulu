@@ -9,13 +9,42 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  final List<Course> _allCourses = [
+    Course('Math', '71.3K', 'assets/images/card1.jpg'),
+    Course('Biology', '57.3K', 'assets/images/card2.jpg'),
+    Course('Physics', '102.5K', 'assets/images/card3.jpg'),
+    Course('Economics', '85.7K', 'assets/images/card4.jpg'),
+  ];
+
+  List<Course> _filteredCourses = [];
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredCourses = _allCourses;
+  }
+
+  void _filterCourses(String query) {
+    setState(() {
+      _searchQuery = query;
+      _filteredCourses = _allCourses
+          .where((course) =>
+              course.title.toLowerCase().contains(_searchQuery.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final availableHeight = mediaQuery.size.height - mediaQuery.viewInsets.bottom;
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         flexibleSpace: Align(
           alignment: Alignment.centerRight,
@@ -62,135 +91,123 @@ class _ExploreScreenState extends State<ExploreScreen> {
       ),
       body: SafeArea(
         bottom: false,
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-            margin: const EdgeInsets.only(bottom: 72),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Today Lessons',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.search),
-                      border: InputBorder.none,
-                      hintText: 'Search courses',
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+              margin: const EdgeInsets.only(bottom: 72),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Today Lessons',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                // Text('New Course', style: Theme.of(context).textTheme.titleLarge),
-                const SizedBox(height: 10),
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.75,
-                  children: [
-                    CourseCard(
-                      imageUrl: 'assets/images/card1.jpg',
-                      title: 'Math',
-                      viewers: '71.3K',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LiveCoursesScreen()),
-                        );
-                      },
+                  const SizedBox(height: 20),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    CourseCard(
-                      imageUrl: 'assets/images/card2.jpg',
-                      title: 'Biology',
-                      viewers: '57.3K',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LiveCoursesScreen()),
-                        );
-                      },
+                    child: TextField(
+                      onChanged: _filterCourses,
+                      onSubmitted: (_) => FocusScope.of(context).unfocus(),
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.search),
+                        border: InputBorder.none,
+                        hintText: 'Search courses',
+                      ),
                     ),
-                    CourseCard(
-                      imageUrl: 'assets/images/card3.jpg',
-                      title: 'Physic',
-                      viewers: '102.5K',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LiveCoursesScreen()),
+                  ),
+                  const SizedBox(height: 20),
+                  if (_filteredCourses.isNotEmpty)
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemCount: _filteredCourses.length,
+                      itemBuilder: (context, index) {
+                        final course = _filteredCourses[index];
+                        return CourseCard(
+                          imageUrl: course.imageUrl,
+                          title: course.title,
+                          viewers: course.viewers,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LiveCoursesScreen()),
+                            );
+                          },
                         );
                       },
+                    )
+                  else
+                    SizedBox(
+                      height: availableHeight * 0.6,
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Not Yet',
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
                     ),
-                    CourseCard(
-                      imageUrl: 'assets/images/card4.jpg',
-                      title: 'Economics',
-                      viewers: '85.7K',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LiveCoursesScreen()),
-                        );
-                      },
+                  if (_searchQuery.isEmpty) ...[
+                    const SizedBox(height: 20),
+                    Text('Popular Course',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    const SizedBox(height: 10),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.75,
+                      children: [
+                        CourseCard(
+                          imageUrl: 'assets/images/card1.jpg',
+                          title: 'Math',
+                          viewers: '120.4K',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LiveCoursesScreen()),
+                            );
+                          },
+                        ),
+                        CourseCard(
+                          imageUrl: 'assets/images/card2.jpg',
+                          title: 'Economics',
+                          viewers: '95.3K',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LiveCoursesScreen()),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ],
-                ),
-                const SizedBox(height: 20),
-                Text('Popular Course',
-                    style: Theme.of(context).textTheme.titleLarge),
-                const SizedBox(height: 10),
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.75,
-                  children: [
-                    CourseCard(
-                      imageUrl: 'assets/images/card1.jpg',
-                      title: 'Math',
-                      viewers: '120.4K',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LiveCoursesScreen()),
-                        );
-                      },
-                    ),
-                    CourseCard(
-                      imageUrl: 'assets/images/card2.jpg',
-                      title: 'Economics',
-                      viewers: '95.3K',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LiveCoursesScreen()),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -199,13 +216,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 }
 
+class Course {
+  final String title;
+  final String viewers;
+  final String imageUrl;
+
+  Course(this.title, this.viewers, this.imageUrl);
+}
+
 class CourseCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String viewers;
   final VoidCallback onTap;
 
-  const CourseCard({super.key, 
+  const CourseCard({
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.viewers,
