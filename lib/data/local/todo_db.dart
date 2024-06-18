@@ -8,7 +8,7 @@ class TodoDB {
     await Hive.openBox<Todo>('todo_box');
   }
 
-  static List<Todo> getAllTodo() => todoBox.values.toList();
+  static Future<List<Todo>> getAllTodo() async => todoBox.values.toList();
 
   static Todo getTodoByUuid(String uuid) =>
       todoBox.values.toList().firstWhere((e) => e.uuid == uuid);
@@ -17,7 +17,10 @@ class TodoDB {
     await todoBox.add(todo);
   }
 
-  static Future<void> updateTodo(int index, Todo todo) async {
+  static Future<void> updateTodo(
+    int index,
+    Todo todo,
+  ) async {
     await todoBox.putAt(index, todo);
   }
 
