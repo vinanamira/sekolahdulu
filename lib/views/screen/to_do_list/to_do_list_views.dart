@@ -118,16 +118,27 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                 child: ListTile(
                                   title: Text(
                                     todo.title,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      decoration: todo.isCompleted
+                                          ? TextDecoration.lineThrough
+                                          : TextDecoration.none,
+                                    ),
                                   ),
                                   subtitle: Text(
                                     'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
-                                    style: TextStyle(color: Colors.grey[600]),
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      decoration: todo.isCompleted
+                                          ? TextDecoration.lineThrough
+                                          : TextDecoration.none,
+                                    ),
                                   ),
                                   trailing: isDue
                                       ? Icon(Icons.notification_important, color: Colors.red)
-                                      : Icon(Icons.arrow_forward_ios),
+                                      : todo.isCompleted
+                                          ? Icon(Icons.check_circle, color: Colors.green)
+                                          : Icon(Icons.arrow_forward_ios),
                                   onTap: () {
                                     Navigator.push(
                                       context,
@@ -203,6 +214,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
   late DateTime selectedDate;
+  late bool isCompleted;
 
   var uuid = const Uuid();
 
@@ -212,6 +224,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
     _titleController = TextEditingController();
     _descriptionController = TextEditingController();
     selectedDate = DateTime.now();
+    isCompleted = false; // Default value for new task
   }
 
   void presentDatePicker(BuildContext context) {
@@ -234,6 +247,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
       _titleController.text = widget.todo!.title;
       _descriptionController.text = widget.todo!.description;
       selectedDate = widget.todo!.dueDate;
+      isCompleted = widget.todo!.isCompleted;
     }
 
     return Scaffold(
@@ -276,6 +290,20 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
               ],
             ),
             const SizedBox(height: 20),
+            Row(
+              children: [
+                const Text('Completed: '),
+                Checkbox(
+                  value: isCompleted,
+                  onChanged: (value) {
+                    setState(() {
+                      isCompleted = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 if (_titleController.text.isEmpty ||
@@ -297,6 +325,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
                       title: _titleController.text,
                       description: _descriptionController.text,
                       dueDate: selectedDate,
+                      isCompleted: isCompleted,
                     );
 
                     _todoController.updateTodo(widget.index!, newTodo);
@@ -308,6 +337,7 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
                     title: _titleController.text,
                     description: _descriptionController.text,
                     dueDate: selectedDate,
+                    isCompleted: isCompleted,
                   );
 
                   _todoController.addTodo(newTodo);
@@ -364,6 +394,15 @@ class TodoDetailScreen extends StatelessWidget {
               Text(
                 'Due Date: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
                 style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Status: ${todo.isCompleted ? "Completed" : "On Progress"}',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: todo.isCompleted ? Colors.green : Colors.orange,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 20),
               Row(
