@@ -107,6 +107,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                             itemCount: sortedTodos.length,
                             itemBuilder: (context, index) {
                               var todo = sortedTodos[index];
+                              bool isDue = todo.dueDate.isBefore(DateTime.now().add(Duration(days: 1)));
 
                               return Card(
                                 color: const Color.fromARGB(255, 243, 233, 248),
@@ -124,7 +125,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                     'Due: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
                                     style: TextStyle(color: Colors.grey[600]),
                                   ),
-                                  trailing: const Icon(Icons.arrow_forward_ios),
+                                  trailing: isDue
+                                      ? Icon(Icons.notification_important, color: Colors.red)
+                                      : Icon(Icons.arrow_forward_ios),
                                   onTap: () {
                                     Navigator.push(
                                       context,
