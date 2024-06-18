@@ -72,7 +72,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-            padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+              padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
               child: Text(
                 'Daily Task List',
                 style: TextStyle(
@@ -98,7 +98,8 @@ class _TodoListScreenState extends State<TodoListScreen> {
                         );
                       } else {
                         // Sorting todoBox based on dueDate
-                        var sortedTodos = _todoController.todoBox.values.toList()
+                        var sortedTodos = _todoController.todoBox.values
+                            .toList()
                           ..sort((a, b) => a.dueDate.compareTo(b.dueDate));
 
                         return GetBuilder<TodoController>(
@@ -108,6 +109,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                               var todo = sortedTodos[index];
 
                               return Card(
+                                color: const Color.fromARGB(255, 243, 233, 248),
                                 margin: const EdgeInsets.symmetric(
                                   vertical: 8.0,
                                   horizontal: 16.0,
@@ -127,8 +129,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            TodoDetailScreen(
+                                        builder: (context) => TodoDetailScreen(
                                           todo: todo,
                                           index: index,
                                         ),
@@ -143,13 +144,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
                       }
                     },
                   ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          right: 36.0,
-                          bottom:
-                              135.0), // Sesuaikan nilai ini untuk posisi yang diinginkan
+                  Padding(
+                    padding:
+                      const EdgeInsets.only(right: 36.0, bottom: 135.0),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
                       child: FloatingActionButton(
                         onPressed: () {
                           Navigator.push(
@@ -162,7 +161,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
                           );
                         },
                         tooltip: 'Add Daily Task',
-                        child: const Icon(Icons.add),
+                        backgroundColor: const Color.fromARGB(255, 243, 233, 248),
+                        child: const Icon(
+                          Icons.add,
+                        ),
                       ),
                     ),
                   ),
@@ -249,7 +251,8 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
             ),
             const SizedBox(height: 20),
             TextField(
-              decoration: const InputDecoration(labelText: 'Daily Task Description'),
+              decoration:
+                  const InputDecoration(labelText: 'Daily Task Description'),
               controller: _descriptionController,
             ),
             const SizedBox(height: 20),
@@ -272,7 +275,8 @@ class _AddEditTodoScreenState extends State<AddEditTodoScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (_titleController.text.isEmpty || _descriptionController.text.isEmpty) {
+                if (_titleController.text.isEmpty ||
+                    _descriptionController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('All fields are required'),
@@ -336,62 +340,66 @@ class TodoDetailScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Title: ${todo.title}',
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Description: ${todo.description}',
-              style: const TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Due Date: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddEditTodoScreen(
-                          isEditing: true,
-                          todo: todo,
-                          index: index,
+      body: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Title: ${todo.title}',
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Description: ${todo.description}',
+                style: const TextStyle(fontSize: 18),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Due Date: ${todo.dueDate.day}/${todo.dueDate.month}/${todo.dueDate.year}',
+                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddEditTodoScreen(
+                            isEditing: true,
+                            todo: todo,
+                            index: index,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  child: const Text('Edit'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    todoController.deleteTodo(index);
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Delete'),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Back to Daily Task List'),
-            ),
-          ],
+                      );
+                    },
+                    child: const Text('Edit'),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      todoController.deleteTodo(index);
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Delete'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Back to Daily Task List'),
+              ),
+            ],
+          ),
         ),
       ),
     );

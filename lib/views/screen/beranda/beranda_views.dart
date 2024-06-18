@@ -116,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 48),
                   const Text.rich(
                     TextSpan(
                       children: [
@@ -128,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: 'sekolahdulu',
+                          text: 'Sekolahdulu',
                           style: TextStyle(
                             fontSize: 12,
                             color: Color.fromRGBO(78, 50, 162, 1),
